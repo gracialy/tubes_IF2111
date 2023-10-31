@@ -17,7 +17,7 @@ void ADV() {
     /* Pita dimajukan satu karakter. ... */
     /* Algoritma */
     retval = fscanf(pita, "%c", &currentChar);
-    EOP = (currentChar == MARK);
+    EOP = (currentChar == MARK || currentChar == NEWLINE);
     if (EOP) {
         fclose(pita);
     }
