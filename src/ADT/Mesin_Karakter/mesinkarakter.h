@@ -29,6 +29,6 @@ void ADV();
           currentChar mungkin = MARK
           Jika  currentChar = MARK maka EOP akan menyala (true) */
 
-
+boolean isEOF();
 
 #endif

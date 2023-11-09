@@ -11,7 +11,7 @@ void IgnoreNewline()
     /* Mengabaikan satu atau beberapa BLANK
        I.S. : currentChar sembarang
        F.S. : currentChar ≠ BLANK atau currentChar = MARK */
-    while (currentChar == NEWLINE)
+    while (currentChar == NEWLINE && !isEOF())
     {
         ADV();
     }
@@ -53,7 +53,7 @@ void CopyLine(boolean readDigit)
     currentWord.Length = 0;
     if (readDigit)
     {
-        while(currentChar != BLANK && currentChar != NEWLINE)
+        while(currentChar != BLANK && currentChar != NEWLINE && !isEOF())
         {
             currentWord.TabWord[currentWord.Length] = currentChar;
             currentWord.Length++;
@@ -64,12 +64,13 @@ void CopyLine(boolean readDigit)
     }
     while(currentChar == BLANK) ADV();
 
-    while(currentChar != NEWLINE)
+    while(currentChar != NEWLINE && !isEOF())
     {
         currentWord.TabWord[currentWord.Length] = currentChar;
         currentWord.Length++;
         ADV();
     }
+    currentWord.TabWord[currentWord.Length] = '\0';
 }
 
 int stringToInt(char* str){

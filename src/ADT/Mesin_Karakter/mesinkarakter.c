@@ -9,7 +9,7 @@ int retval = 1;
 void START() {
     /* Mesin siap dioperasikan. Pita disiapkan ... */
     /* Algoritma */
-    pita = fopen("iseng\\konfigurasi.txt", "r");
+    pita = fopen("src/Command/konfigurasi.txt", "r");
     ADV();
 }
 
@@ -21,4 +21,8 @@ void ADV() {
     // {
     //     fclose(pita);
     // }
+}
+
+boolean isEOF(){
+    return feof(pita);
 }
