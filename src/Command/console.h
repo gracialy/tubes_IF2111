@@ -7,6 +7,7 @@
 #include "../ADT/Map/map.h"
 #include "../ADT/Mesin Karakter/mesinkarakter.h"
 #include "../ADT/Mesin Kata/mesinkata.h"
+#include "../ADT/Mesin Baris/mesinbaris.h"
 #include "../ADT/Queue/circular_queue.h"
 #include "../ADT/Stack/stack.h"
 
