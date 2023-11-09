@@ -4,13 +4,14 @@
 #ifndef __MESIN_KAR_H_
 #define __MESIN_KAR_H_
 
-#include "../../boolean.h"
+#include "..\..\boolean.h"
 
-#define MARK '.'
 #define NEWLINE '\n'
+#define UNDEF -1
 /* State Mesin */
 extern char currentChar;
 extern boolean EOP;
+extern int retval;
 
 void START();
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
@@ -28,10 +29,6 @@ void ADV();
           currentChar mungkin = MARK
           Jika  currentChar = MARK maka EOP akan menyala (true) */
 
-char GetCC();
-/* Mengirimkan currentChar */
 
-boolean IsEOP();
-/* Mengirimkan true jika currentChar = MARK */
 
 #endif

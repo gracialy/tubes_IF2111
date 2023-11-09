@@ -2,14 +2,14 @@
 #include "mesinkarakter.h"
 
 char currentChar;
-boolean EOP;
+boolean EOL;
 static FILE *pita;
-static int retval;
+int retval = 1;
 
 void START() {
     /* Mesin siap dioperasikan. Pita disiapkan ... */
     /* Algoritma */
-    pita = stdin;
+    pita = fopen("iseng\\konfigurasi.txt", "r");
     ADV();
 }
 
@@ -17,20 +17,8 @@ void ADV() {
     /* Pita dimajukan satu karakter. ... */
     /* Algoritma */
     retval = fscanf(pita, "%c", &currentChar);
-    EOP = (currentChar == MARK || currentChar == NEWLINE);
-    if (EOP) {
-        fclose(pita);
-    }
-}
-
-char GetCC() {
-    /* Mengirimkan currentChar */
-    /* Algoritma */
-    return currentChar;
-}
-
-boolean IsEOP() {
-    /* Mengirimkan true jika currentChar = MARK */
-    /* Algoritma */
-    return EOP;
+    // if (!retval) 
+    // {
+    //     fclose(pita);
+    // }
 }
