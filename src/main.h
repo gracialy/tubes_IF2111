@@ -17,6 +17,9 @@
 
 // Daftar Header Command
 
+extern Word listArtis;
+extern int nlistArtis;
 
+void loadKonfigurasi();
 
 #endif

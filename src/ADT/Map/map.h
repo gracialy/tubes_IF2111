@@ -15,7 +15,7 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 #define Undefined -999
 
 // typedef int bool;
-typedef Word keytype;
+typedef Set keytype;
 typedef int valuetype;
 typedef int address;
 

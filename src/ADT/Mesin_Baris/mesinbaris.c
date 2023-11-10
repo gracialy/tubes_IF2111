@@ -3,7 +3,7 @@
 #include "mesinbaris.h"
 
 boolean EndWord;
-Word currentWord;
+Word currentLine;
 int currentInt;
 
 void IgnoreNewline()
@@ -50,32 +50,32 @@ void CopyLine(boolean readDigit)
               currentChar = BLANK atau currentChar = MARK;
               currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
               Jika panjang kata melebihi CAPACITY, maka sisa kata terpotong */
-    currentWord.Length = 0;
+    currentLine.Length = 0;
     if (readDigit)
     {
         while(currentChar != BLANK && currentChar != NEWLINE && !isEOF())
         {
-            currentWord.TabWord[currentWord.Length] = currentChar;
-            currentWord.Length++;
+            currentLine.TabWord[currentLine.Length] = currentChar;
+            currentLine.Length++;
             ADV();
         }
-        currentInt = stringToInt(currentWord.TabWord);
-        currentWord.Length = 0;
+        currentInt = stringToInt(currentLine.TabWord);
+        currentLine.Length = 0;
     }
     while(currentChar == BLANK) ADV();
 
     while(currentChar != NEWLINE && !isEOF())
     {
-        currentWord.TabWord[currentWord.Length] = currentChar;
-        currentWord.Length++;
+        currentLine.TabWord[currentLine.Length] = currentChar;
+        currentLine.Length++;
         ADV();
     }
-    currentWord.TabWord[currentWord.Length] = '\0';
+    currentLine.TabWord[currentLine.Length] = '\0';
 }
 
 int stringToInt(char* str){
     int res = 0;
-    for (int i = 0; i < currentWord.Length; ++i){
+    for (int i = 0; i < currentLine.Length; ++i){
         res = res * 10 + (str[i] - '0');
     }
     return res;

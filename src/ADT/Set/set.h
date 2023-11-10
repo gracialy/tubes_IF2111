@@ -9,14 +9,17 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 
 #define Nil 0
 #define MaxEl 100
+#define MaxChar 50
 
-typedef int infotype;
+typedef char* infotype;
 typedef int address;
+typedef char label;
 
 typedef struct
 {
     infotype Elements[MaxEl];
     address Count;
+    label Name[MaxChar];
 } Set;
 
 /* Definisi Set S kosong : S.Count = Nil */
@@ -31,6 +34,10 @@ void CreateEmpty(Set *S);
 /* F.S. Membuat sebuah Set S kosong berkapasitas MaxEl */
 /* Ciri Set kosong : count bernilai Nil */
 
+void RenameSet(Set *S, char* str);
+/* I.S. Sembarang */
+/* F.S. Mengganti nama dari sebuah Set S */
+
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
 boolean IsEmpty(Set S);
 /* Mengirim true jika Set S kosong*/
@@ -41,7 +48,7 @@ boolean IsFull(Set S);
 /* Ciri Set penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Set ********* */
-void Insert(Set *S, infotype Elmt);
+void InsertSet(Set *S, infotype Elmt);
 /* Menambahkan Elmt sebagai elemen Set S. */
 /* I.S. S mungkin kosong, S tidak penuh
         S mungkin sudah beranggotakan Elmt */

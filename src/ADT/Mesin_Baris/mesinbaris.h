@@ -17,7 +17,7 @@ typedef struct
 
 /* State Mesin Kata */
 extern boolean EndWord;
-extern Word currentWord;
+extern Word currentLine;
 extern int currentInt;
 
 void IgnoreNewline();

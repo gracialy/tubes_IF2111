@@ -10,6 +10,13 @@ void CreateEmpty(Set *S){
 /* F.S. Membuat sebuah Set S kosong berkapasitas MaxEl */
 /* Ciri Set kosong : count bernilai Nil */
 
+void RenameSet(Set *S, char* str){
+        for (int i = 0; str[i] != '\0'; ++i)
+        {
+                S->Name[i] = str[i];
+        }
+}
+
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
 boolean IsEmpty(Set S){
         return S.Count == Nil;
@@ -24,7 +31,7 @@ boolean IsFull(Set S){
 /* Ciri Set penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Set ********* */
-void Insert(Set *S, infotype Elmt){
+void InsertSet(Set *S, infotype Elmt){
         if (!IsMember(*S, Elmt)){
                 (*S).Elements[(*S).Count] = Elmt;
                 (*S).Count ++;
@@ -70,12 +77,12 @@ Set SetUnion(Set s1, Set s2){
         CreateEmpty(&setunion);
 
         for (int i=0; i<s1.Count; i++){
-                Insert(&setunion, s1.Elements[i]);
+                InsertSet(&setunion, s1.Elements[i]);
         }
         // full handler?
         int i=0;
         while (i<s2.Count && !IsFull(setunion)){
-                Insert(&setunion, s2.Elements[i]);
+                InsertSet(&setunion, s2.Elements[i]);
                 i++;
         }
 
@@ -90,7 +97,7 @@ Set SetIntersection(Set s1, Set s2){
 
         for (int i=0; i<s1.Count; i++){
                 if (IsMember(s2, s1.Elements[i])){\
-                        Insert(&setintersect, s1.Elements[i]);
+                        InsertSet(&setintersect, s1.Elements[i]);
                 }
         }
 
@@ -105,13 +112,13 @@ Set SetSymmetricDifference(Set s1, Set s2){
 
         for (int i=0; i<s1.Count; i++){
                 if (!IsMember(s2, s1.Elements[i])){\
-                        Insert(&setsd, s1.Elements[i]);
+                        InsertSet(&setsd, s1.Elements[i]);
                 }
         }
 
         for (int i=0; i<s2.Count; i++){
                 if (!IsMember(s1, s2.Elements[i])){\
-                        Insert(&setsd, s2.Elements[i]);
+                        InsertSet(&setsd, s2.Elements[i]);
                 }
         }
 
@@ -127,7 +134,7 @@ Set SetSubtract(Set s1, Set s2){
 
         for (int i=0; i<s1.Count; i++){
                 if (!IsMember(s2, s1.Elements[i])){\
-                        Insert(&setsubs, s1.Elements[i]);
+                        InsertSet(&setsubs, s1.Elements[i]);
                 }
         }
 
