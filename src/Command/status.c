@@ -1,5 +1,5 @@
 #include "status.h"
-#include "ADT/Queue/circular_queue.h"
+#include "../ADT/Queue/circular_queue.h"
 
 void status(Queue queue, char* current_playlist){
     if (IsEmpty(queue))

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#include "../boolean.h"
+#include "../Command/boolean.h"
 #include "../ADT/list/list.h"
 #include "../ADT/Map/map.h"
 #include "../ADT/Mesin_Karakter/mesinkarakter.h"

@@ -4,7 +4,7 @@
 #ifndef __MESIN_KAR_H_
 #define __MESIN_KAR_H_
 
-#include "..\..\boolean.h"
+#include "../../Command/boolean.h"
 
 #define NEWLINE '\n'
 #define UNDEF -1
