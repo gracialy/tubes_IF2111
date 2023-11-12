@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "mesinkarakter.h"
 
 char currentChar;
@@ -9,7 +10,7 @@ int retval = 1;
 void START() {
     /* Mesin siap dioperasikan. Pita disiapkan ... */
     /* Algoritma */
-    pita = fopen("src/Command/konfigurasi.txt", "r");
+    pita = fopen("src/save/konfigurasi.txt", "r");
     ADV();
 }
 

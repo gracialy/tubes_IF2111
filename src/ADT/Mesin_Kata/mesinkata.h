@@ -7,7 +7,7 @@
 #include "../../Command/boolean.h"
 #include "../Mesin_Karakter/mesinkarakter.h"
 
-#define NMax 50
+#define NMax 500
 #define BLANK ' '
 #define MARK ' '
 

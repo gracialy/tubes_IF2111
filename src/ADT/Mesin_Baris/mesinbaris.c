@@ -51,6 +51,7 @@ void CopyLine(boolean readDigit)
               currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
               Jika panjang kata melebihi CAPACITY, maka sisa kata terpotong */
     currentLine.Length = 0;
+    
     if (readDigit)
     {
         while(currentChar != BLANK && currentChar != NEWLINE && !isEOF())

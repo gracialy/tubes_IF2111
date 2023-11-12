@@ -1,19 +1,20 @@
 /* File: mesinkata.h */
 /* Definisi Mesin Kata: Model Akuisisi Versi I */
 
-#ifndef __MESINKATA_H__
-#define __MESINKATA_H__
+#ifndef __MESINBARIS__
+#define __MESINBARIS__
 
 #include "../Mesin_Karakter/mesinkarakter.h"
+#include "../Mesin_Kata/mesinkata.h"
 
-#define NMax 500
+//#define NMaxW 500
 #define BLANK ' '
 
-typedef struct
-{
-   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
-   int Length;
-} Word;
+// typedef struct
+// {
+//    char TabWord[NMaxW]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+//    int Length;
+// } Word;
 
 /* State Mesin Kata */
 extern boolean EndWord;

@@ -13,24 +13,24 @@ boolean IsMapEmpty(Map M)
 
 boolean IsMapFull(Map M)
 {
-    return M.Count == MaxEl;
+    return M.Count == MaxElM;
 }
 
-valuetype Value(Map M, keytype k)
+valuetype Value(Map M, char* name)
 {
     int i = 0;
     while (i < M.Count)
     {
-        if (isWordEqual(M.Elements[i].Key, k))
+        if (CompareString(M.Elements[i].Key.Name, name));
         {
             return M.Elements[i].Value;
         }
         i++;
     }
-    return Undefined;
+    return UndefinedM;
 }
 
-void Insert(Map *M, keytype k, valuetype v)
+void InsertMap(Map *M, keytype k, valuetype v)
 {
     if (!IsMapFull(*M))
     {
@@ -41,7 +41,7 @@ void Insert(Map *M, keytype k, valuetype v)
     }
 }
 
-void Delete(Map *M, keytype k)
+void DeleteMap(Map *M, char* name)
 {
     if (M->Count == 1)
     {
@@ -49,10 +49,10 @@ void Delete(Map *M, keytype k)
     }
     else
     {
-        if (IsMemberMap(*M, k))
+        if (IsMemberMap(*M, name))
         {
             int i = 0;
-            while (i < M->Count && !isWordEqual(M->Elements[i].Key, k))
+            while (i < M->Count && !CompareString(M->Elements[i].Key.Name, name))
             {
                 i++;
             }
@@ -67,12 +67,12 @@ void Delete(Map *M, keytype k)
     }
 }
 
-boolean IsMemberMap(Map M, keytype k)
+boolean IsMemberMap(Map M, char* name)
 {
     int i = 0;
     while (i < M.Count)
     {
-        if (isWordEqual(lowerWord(M.Elements[i].Key), lowerWord(k)))
+        if (CompareString(M.Elements[i].Key.Name, name))
         {
             return true;
         }
@@ -81,47 +81,70 @@ boolean IsMemberMap(Map M, keytype k)
     return false;
 }
 
-Map UnionMap(Map m1, Map m2, boolean key_based )
-{
-	Map m3;
-	CreateMapEmpty(&m3);
-	for(int i=0; i<m1.Count ; i++){
-		Insert(&m3,m1.Elements[i].Key,m1.Elements[i].Value);
-	}
-	for(int j=0; j<m2.Count ; j++){
-		Insert(&m3,m2.Elements[j].Key,m2.Elements[j].Value);
-	}
-	if (key_based) {
-		for (int k=0 ; k<m3.Count-1 ; k++){
-			for (int l=k+1; l<m3.Count ; l++){	
-				if (wordToInt(m3.Elements[k].Key) > wordToInt(m3.Elements[l].Key)){
-					info temp;
-					temp=m3.Elements[k];
-					m3.Elements[k]=m3.Elements[l];
-					m3.Elements[l]=temp;
-				}
-			}
-		}
-	}
-	else{
-		for (int k=0 ; k<m3.Count-1 ; k++){
-			for (int l=k+1; l<m3.Count ; l++){	
-				if (m3.Elements[k].Value>m3.Elements[l].Value){
-					info temp;
-					temp=m3.Elements[k];
-					m3.Elements[k]=m3.Elements[l];
-					m3.Elements[l]=temp;
-				}
-				else if (m3.Elements[k].Value==m3.Elements[l].Value) {
-					if (wordToInt(m3.Elements[k].Key) > wordToInt(m3.Elements[l].Key)){
-						info temp;
-						temp=m3.Elements[k];
-						m3.Elements[k]=m3.Elements[l];
-						m3.Elements[l]=temp;
-					}
-				}
-			}
-		}		
-	}
-	return m3;
+// Map UnionMap(Map m1, Map m2, boolean key_based )
+// {
+// 	Map m3;
+// 	CreateMapEmpty(&m3);
+// 	for(int i=0; i<m1.Count ; i++){
+// 		Insert(&m3,m1.Elements[i].Key,m1.Elements[i].Value);
+// 	}
+// 	for(int j=0; j<m2.Count ; j++){
+// 		Insert(&m3,m2.Elements[j].Key,m2.Elements[j].Value);
+// 	}
+// 	if (key_based) {
+// 		for (int k=0 ; k<m3.Count-1 ; k++){
+// 			for (int l=k+1; l<m3.Count ; l++){	
+// 				if (wordToInt(m3.Elements[k].Key) > wordToInt(m3.Elements[l].Key)){
+// 					info temp;
+// 					temp=m3.Elements[k];
+// 					m3.Elements[k]=m3.Elements[l];
+// 					m3.Elements[l]=temp;
+// 				}
+// 			}
+// 		}
+// 	}
+// 	else{
+// 		for (int k=0 ; k<m3.Count-1 ; k++){
+// 			for (int l=k+1; l<m3.Count ; l++){	
+// 				if (m3.Elements[k].Value>m3.Elements[l].Value){
+// 					info temp;
+// 					temp=m3.Elements[k];
+// 					m3.Elements[k]=m3.Elements[l];
+// 					m3.Elements[l]=temp;
+// 				}
+// 				else if (m3.Elements[k].Value==m3.Elements[l].Value) {
+// 					if (wordToInt(m3.Elements[k].Key) > wordToInt(m3.Elements[l].Key)){
+// 						info temp;
+// 						temp=m3.Elements[k];
+// 						m3.Elements[k]=m3.Elements[l];
+// 						m3.Elements[l]=temp;
+// 					}
+// 				}
+// 			}
+// 		}		
+// 	}
+// 	return m3;
+// }
+
+void PrintMap(Map m){
+    for (int i = 0; i < m.Count; ++i)
+    {
+        printf("<%s, %s>\n", m.Elements[i].Value, m.Elements[i].Key.Name);
+
+        for (int j = 0; j < m.Elements[i].Key.Count; ++j)
+        {
+            printf("%d. %s\n", j + 1, m.Elements[i].Key.Elements[j]);
+        }
+    }
+}
+
+
+boolean CompareString(char* a, char*b){
+    int idx = 0;
+    while (a[idx] == b[idx] && (a[idx] != '\0' || b[idx] != '\0'))
+    {
+        idx++;
+    }
+    if (a[idx] != b[idx]) return false;
+    return true;
 }

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "../Mesin_Kata/mesinkata.h"
 #include "../../Command/boolean.h"
+#include "../Set/set.h"
 
 /* MODUL Map
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
@@ -11,12 +12,14 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 // #define false 0
 // #define true 1
 #define Nil 0
-#define MaxEl 10
-#define Undefined -999
+#define MaxElM 20
+#define UndefinedM "z"
+
+#define getSet(P, idx) (P).Elements[(idx)].Key
 
 // typedef int bool;
 typedef Set keytype;
-typedef int valuetype;
+typedef char* valuetype;
 typedef int address;
 
 typedef struct {
@@ -25,7 +28,7 @@ typedef struct {
 } info;
 
 typedef struct {
-	info Elements[MaxEl];
+	info Elements[MaxElM];
 	address Count;
 } Map;
 
@@ -51,26 +54,26 @@ boolean IsMapFull(Map M);
 /* Ciri Map penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Map ********* */
-valuetype Value(Map M, keytype k);
+valuetype Value(Map M, char* name);
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
-void Insert(Map *M, keytype k, valuetype v);
+void InsertMap(Map *M, keytype k, valuetype v);
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 
-void Delete(Map *M, keytype k);
+void DeleteMap(Map *M, char* name);
 /* Menghapus Elmt dari Map M. */
 /* I.S. M tidak kosong
         element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-boolean IsMemberMap(Map M, keytype k);
+boolean IsMemberMap(Map M, char* name);
 /* Mengembalikan true jika k adalah member dari M */
 
-Map UnionMap(Map m1, Map m2, boolean key_based );
+//Map UnionMap(Map m1, Map m2, boolean key_based );
     /* Menggabungkan m1 dengan m2 pada sebuah map baru dengan urutan yang ditentukan berdasarkan key_based
     apabila key_based true maka elemen dalam map baru ditambahkan mengurut membesar berdasarkan keynya
     apabila key_based false maka elemen dalam map baru ditambahkan mengurut membesar berdasarkan valuenya*/
@@ -98,5 +101,9 @@ Map UnionMap(Map m1, Map m2, boolean key_based );
           Output:
             m3: {<7,1>,<1,2>,<20,3>,<11,10>,<8,100>}
     */
+
+void PrintMap(Map m);
+
+boolean CompareString(char* a, char*b);
 
 #endif

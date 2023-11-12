@@ -1,6 +1,6 @@
 #include "konfigurasi.h"
 
-void konfigurasi(char** listArtis, Map* listAlbum){
+void konfigurasi(char listArtis[100][50], Map* listAlbum){
     STARTFILE();
     ADVFILE(true);
     int banyakArtis = currentInt;
@@ -8,24 +8,30 @@ void konfigurasi(char** listArtis, Map* listAlbum){
     {
         ADVFILE(true);
         int banyakAlbum = currentInt;
-        listArtis[i] = currentLine.TabWord;
+        copyString(listArtis[i], currentLine.TabWord);
 
         for (int j = 0; j < banyakAlbum; ++j) //ngebaca album
         {
-            Set currentAlbum;
-            CreateEmpty(&currentAlbum);
             ADVFILE(true);
             int banyakLagu = currentInt;
-            RenameSet(&currentAlbum, &currentLine.TabWord);
-
+            RenameSet(&getSet(*listAlbum, listAlbum->Count), currentLine.TabWord);
+            CreateEmpty(&getSet(*listAlbum, listAlbum->Count));
             for (int k = 0; k < banyakLagu; ++k) //ngebaca lagu
             {
                 ADVFILE(false);
-                InsertSet(&currentAlbum, currentLine.TabWord);
+                InsertSet(&getSet(*listAlbum, listAlbum->Count), currentLine.TabWord);
             }
-
-            Insert(listAlbum, currentAlbum, listArtis[i]);
+            listAlbum->Elements[listAlbum->Count].Value = listArtis[i];
+            listAlbum->Count ++;
         }
     }
+}
 
+void copyString(char* copy, char* target){
+    int i;
+    for (i = 0; target[i] != '\0'; ++i)
+    {
+        copy[i] = target[i];
+    }
+    copy[i] = '\0';
 }
