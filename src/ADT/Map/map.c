@@ -138,13 +138,25 @@ void PrintMap(Map m){
     }
 }
 
-
 boolean CompareString(char* a, char*b){
     int idx = 0;
-    while (a[idx] == b[idx] && (a[idx] != '\0' || b[idx] != '\0'))
+    while ((a[idx] == b[idx] || a[idx] == b[idx] + 32 || a[idx] == b[idx] - 32)&& (a[idx] != '\0' || b[idx] != '\0'))
     {
         idx++;
     }
     if (a[idx] != b[idx]) return false;
     return true;
 }
+
+int GetIdx(Map m, valuetype artistName){
+    for (int i = 0; i < m.Count; ++i)
+    {
+        if (CompareString(m.Elements[i].Value, artistName))
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+

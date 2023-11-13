@@ -17,13 +17,13 @@ void IgnoreNewline()
     }
 }
 
-void STARTFILE()
+void STARTFILE(char* path)
 {
     /* I.S. : currentChar sembarang
        F.S. : endWord = true, dan currentChar = MARK;
               atau endWord = false, currentWord adalah kata yang sudah diakuisisi,
               currentChar karakter pertama sesudah karakter terakhir kata */
-    START();
+    START(path);
     IgnoreNewline();
 }
 

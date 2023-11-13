@@ -1,0 +1,1 @@
+gcc src/main.c src/Command/konfigurasi.c src/ADT/Map/map.c src/ADT/Set/set.c src/ADT/Mesin_Baris/mesinbaris.c src/ADT/Mesin_Karakter/mesinkarakter.c src/ADT/Mesin_Kata/mesinkata.c src/Command/showlist.c -o main

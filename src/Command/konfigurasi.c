@@ -1,9 +1,11 @@
 #include "konfigurasi.h"
 
-void konfigurasi(char listArtis[100][50], Map* listAlbum){
-    STARTFILE();
+int banyakArtis;
+
+void konfigurasi(char listArtis[100][50], Map* listAlbum, char* path){
+    STARTFILE(path);
     ADVFILE(true);
-    int banyakArtis = currentInt;
+    banyakArtis = currentInt;
     for (int i = 0; i < banyakArtis; ++i) // ngebaca artis
     {
         ADVFILE(true);
@@ -25,6 +27,7 @@ void konfigurasi(char listArtis[100][50], Map* listAlbum){
             listAlbum->Count ++;
         }
     }
+    printf("File konfigurasi berhasil dibaca. WayangWave berhasil dijalankan!\n");
 }
 
 void copyString(char* copy, char* target){

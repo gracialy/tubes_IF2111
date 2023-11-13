@@ -106,4 +106,6 @@ void PrintMap(Map m);
 
 boolean CompareString(char* a, char*b);
 
+int GetIdx(Map m, valuetype artistName);
+
 #endif

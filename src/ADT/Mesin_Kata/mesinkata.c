@@ -1,37 +1,22 @@
 #include <stdio.h>
 #include "mesinkata.h"
 
-boolean endWord;
 Word currentWord;
+char currentInput;
 
 void IgnoreBlanks()
 {
     /* Mengabaikan satu atau beberapa BLANK
        I.S. : currentChar sembarang
        F.S. : currentChar ≠ BLANK atau currentChar = MARK */
-    while (currentChar == BLANK)
+    while (currentInput == MARK || currentInput == NEWLINE)
     {
-        ADV();
+        currentInput = getc(stdin);
     }
 }
 
-void STARTWORD()
-{
-    /* I.S. : currentChar sembarang
-       F.S. : endWord = true, dan currentChar = MARK;
-              atau endWord = false, currentWord adalah kata yang sudah diakuisisi,
-              currentChar karakter pertama sesudah karakter terakhir kata */
-    START();
-    IgnoreBlanks();
-    if (currentChar == MARK)
-    {
-        endWord = true;
-    }
-    else
-    {
-        endWord = false;
-        CopyWord();
-    }
+void STARTWORD(){
+    currentInput = getc(stdin);
 }
 
 void ADVWORD()
@@ -42,16 +27,7 @@ void ADVWORD()
               Jika currentChar = MARK, endWord = true.
        Proses : Akuisisi kata menggunakan procedure CopyWord */
     IgnoreBlanks();
-    if (currentChar == MARK)
-    {
-        endWord = true;
-    }
-    else
-    {
-        endWord = false;
-        CopyWord();
-        IgnoreBlanks();
-    }
+    CopyWord();
 }
 
 void CopyWord()
@@ -63,18 +39,29 @@ void CopyWord()
               currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
               Jika panjang kata melebihi CAPACITY, maka sisa kata terpotong */
     currentWord.Length = 0;
-    while (currentChar != BLANK && currentChar != MARK)
+    while (currentInput != MARK && currentInput != NEWLINE)
     {
         if (currentWord.Length < NMax)
         { // jika lebih akan terpotong
-            currentWord.TabWord[currentWord.Length++] = currentChar;
-            ADV();
+            currentWord.TabWord[currentWord.Length++] = currentInput;
+            currentInput = getc(stdin);
         }
         else
             break;
     }
+    currentWord.TabWord[currentWord.Length] = '\0';
 }
 
-boolean isEndWord() {
-    return endWord;
+boolean isEqual(char* str){
+    boolean isEqual = true;
+    for (int i = 0; i < currentWord.Length; ++i)
+    {
+        if (currentWord.TabWord[i] != str[i] 
+        && currentWord.TabWord[i] != str[i] + 32 
+        && currentWord.TabWord[i] != str[i] - 32) 
+        {
+            isEqual = false;
+        }
+    }
+    return isEqual;
 }

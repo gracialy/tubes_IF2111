@@ -7,10 +7,10 @@ boolean EOL;
 static FILE *pita;
 int retval = 1;
 
-void START() {
+void START(char* path) {
     /* Mesin siap dioperasikan. Pita disiapkan ... */
     /* Algoritma */
-    pita = fopen("src/save/konfigurasi.txt", "r");
+    pita = fopen(path, "r");
     ADV();
 }
 

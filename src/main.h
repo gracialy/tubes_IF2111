@@ -3,8 +3,11 @@
 #include <time.h>
 #include <math.h>
 
+#include "ADT/Mesin_Kata/mesinkata.h"
+
 #include "Command/boolean.h"
 #include "Command/konfigurasi.h"
+#include "Command/showlist.h"
 
 // #include "ADT/list/list.h"
 // #include "ADT/Map/map.h"
