@@ -52,16 +52,58 @@ void CopyWord()
     currentWord.TabWord[currentWord.Length] = '\0';
 }
 
-boolean isEqual(char* str){
+boolean isEqual(int idx, char* str){
     boolean isEqual = true;
-    for (int i = 0; i < currentWord.Length; ++i)
+    int i;
+    if (idx == - 1)
     {
-        if (currentWord.TabWord[i] != str[i] 
-        && currentWord.TabWord[i] != str[i] + 32 
-        && currentWord.TabWord[i] != str[i] - 32) 
+        for (i = 0; i < currentWord.Length; ++i)
         {
-            isEqual = false;
+            if (currentWord.TabWord[i] != str[i] 
+            && currentWord.TabWord[i] != str[i] + 32 
+            && currentWord.TabWord[i] != str[i] - 32) 
+            {
+                isEqual = false;
+            }
         }
     }
+    else
+    {
+        char temp[NMax];
+        getWord(idx, temp);
+        for (i = 0; temp[i] != '\0'; ++i)
+        {
+            if (temp[i] != str[i] 
+            && temp[i] != str[i] + 32 
+            && temp[i] != str[i] - 32) 
+            {
+                isEqual = false;
+            }
+        }
+    }
+    if (str[i] != '\0') isEqual = false;
     return isEqual;
+}
+
+void getWord(int idx, char* output){
+    int outputLen = 0;
+    for (int i = 0; i < currentWord.Length; ++i)
+    {
+        if (idx > 0 && currentWord.TabWord[i] == BLANK) idx--;
+        else if (idx == 0)
+        {
+            if (currentWord.TabWord[i] == BLANK) break;
+            output[outputLen++] = currentWord.TabWord[i];
+        }
+    }
+    output[outputLen] = '\0';
+}
+
+void stringCopy(char* target, char* copy){
+    int i;
+    for (i = 0; copy[i] != '\0'; ++i)
+    {
+        target[i] = copy[i];
+    }
+    target[i] = '\0';
 }

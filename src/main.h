@@ -8,6 +8,7 @@
 #include "Command/boolean.h"
 #include "Command/konfigurasi.h"
 #include "Command/showlist.h"
+#include "Command/queue_song.h"
 
 // #include "ADT/list/list.h"
 // #include "ADT/Map/map.h"

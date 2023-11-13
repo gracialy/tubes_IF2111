@@ -6,16 +6,17 @@
 #define __circular_queue_h__
 
 #include "../../Command/boolean.h"
+#include "../Mesin_Kata/mesinkata.h"
 
 #define IDX_UNDEF -1
 #define IDX_MAX 99
 
 /* Definisi tipe elemen dan indeks pada Queue */
-typedef int ElType;
+typedef char ElType;
 typedef int IdxType;
 
 typedef struct {
-        ElType Tab[IDX_MAX+1];  /* tabel penyimpan elemen */
+        ElType Tab[IDX_MAX+1][NMax];  /* tabel penyimpan elemen */
         IdxType idxHead;  /* indeks elemen paling awal (terdepan) */
         IdxType idxTail;  /* indeks tempat menambah elemen baru */
 } Queue;
@@ -45,13 +46,13 @@ void CreateQueue (Queue * Q);
 /* - idxTail=IDX_UNDEF. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue (Queue * Q, ElType X);
+void enqueue (Queue * Q, ElType* X);
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. Tail "maju" dengan mekanisme circular buffer,
         X menjadi idxTail yang baru
         Jika Q kosong, idxHead dimulai dari 0 */
-ElType dequeue (Queue * Q);
+void dequeue (Queue * Q, char* target);
 /* Proses: Menghapus idxHead pada Q dengan aturan FIFO, lalu mengembalikan nilainya */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. mengembalikan nilai Q pada idxHead;
@@ -67,5 +68,7 @@ void displayQueue(Queue q);
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
 /* Note: Output mengandung newline */
+
+void setElementQueue(char* target, char* copy);
 
 #endif
