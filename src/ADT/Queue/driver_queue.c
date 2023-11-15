@@ -2,12 +2,14 @@
 #include "circular_queue.c"
 
 int main(){
-    Queue Q;
-    CreateQueue(&Q);
-    enqueue(&Q, 1);
-    enqueue(&Q, 2);
-    enqueue(&Q, 3);
-    enqueue(&Q, 4);
-    enqueue(&Q, 5);
-    displayQueue(Q);
+    Queue Q1,Q2;
+    CreateQueue(&Q1);
+    CreateQueue(&Q2);
+    for (int i = 1; i <= 100; ++i) {
+        enqueue(&Q1, i);
+    }
+    if (IsFull(Q1)) {
+        printf("Q1 penuh");
+    }
+
 }
