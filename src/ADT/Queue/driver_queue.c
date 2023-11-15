@@ -15,6 +15,9 @@ int main(){
         }
         displayQueue(Q1);
         displayQueue(Q2);
+        int a = Length(Q1);
+        int b = Length(Q2);
+        printf("Banyak elemen pada Q1 adalah %d dan Banyak elemen pada Q2 adalah %d", a,b);
     }
 
 
