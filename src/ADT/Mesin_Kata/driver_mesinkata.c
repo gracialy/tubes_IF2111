@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "mesinkata.c"
+#include "mesinkata.h"
 
 int main(){
     Word tubes = {"tubes alstrukdat", 16};
