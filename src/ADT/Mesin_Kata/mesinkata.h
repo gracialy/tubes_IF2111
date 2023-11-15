@@ -50,5 +50,8 @@ void CopyWord();
 
 boolean isEqual(char* str);
 
+void displayWord(Word w);
+/* Menampilkan kata w */
+
 
 #endif

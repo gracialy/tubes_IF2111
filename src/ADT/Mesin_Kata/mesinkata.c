@@ -65,3 +65,12 @@ boolean isEqual(char* str){
     }
     return isEqual;
 }
+
+void displayWord(Word w)
+{
+    int i;
+    for(i = 0; i<w.Length;i++){
+        printf("%c", w.TabWord[i]);
+    }
+    printf("\n");
+}
