@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "circular_queue.h"
 
-boolean IsEmpty (Queue Q) {
+boolean IsEmptyQ (Queue Q) {
     return (IDX_HEAD(Q) == IDX_UNDEF) && (IDX_TAIL(Q) == IDX_UNDEF);
 }
 
-boolean IsFull (Queue Q) {
+boolean IsFullQ (Queue Q) {
     if (IDX_HEAD(Q) > IDX_TAIL(Q)) {
         return IDX_HEAD(Q) - IDX_TAIL(Q) == 1;
     } else {
@@ -13,8 +13,8 @@ boolean IsFull (Queue Q) {
     }
 }
 
-int Length (Queue Q) {
-    if (IsEmpty(Q)) {
+int LengthQ (Queue Q) {
+    if (IsEmptyQ(Q)) {
         return 0;
     } else if (IDX_HEAD(Q) > IDX_TAIL(Q)) {
         return IDX_MAX - IDX_HEAD(Q) + IDX_TAIL(Q) + 2;
@@ -28,8 +28,8 @@ void CreateQueue (Queue * Q) {
     IDX_TAIL(*Q) = IDX_UNDEF;
 }
 
-void enqueue (Queue * Q, ElType X) {
-    if (IsEmpty(*Q)) {
+void enqueue (Queue * Q, ElType* X) {
+    if (IsEmptyQ(*Q)) {
         IDX_HEAD(*Q) = 0;
         IDX_TAIL(*Q) = 0;
     } else {
@@ -39,11 +39,11 @@ void enqueue (Queue * Q, ElType X) {
             IDX_TAIL(*Q)++;
         }
     }
-    TAIL(*Q) = X;
+    stringCopy(TAIL(*Q), X);
 }
 
-ElType dequeue (Queue * Q) {
-    ElType X = HEAD(*Q);
+void dequeue (Queue * Q, char* target) {
+    stringCopy(target, HEAD(*Q));
     if (IDX_HEAD(*Q) == IDX_TAIL(*Q)) {
         IDX_HEAD(*Q) = IDX_UNDEF;
         IDX_TAIL(*Q) = IDX_UNDEF;
@@ -54,23 +54,22 @@ ElType dequeue (Queue * Q) {
             IDX_HEAD(*Q)++;
         }
     }
-    return X;
 }
 
 void displayQueue (Queue Q) {
-    if (IsEmpty(Q)) {
-        printf("[]\n");
-    } else {
-        int i = IDX_HEAD(Q);
-        printf("[");
-        while (i != IDX_TAIL(Q)) {
-            printf("%d,", Q.Tab[i]);
-            if (i == IDX_MAX) {
-                i = 0;
-            } else {
-                i++;
-            }
+    int i = IDX_HEAD(Q), idx = 1;
+    printf("[");
+    while (i != IDX_TAIL(Q)) {
+        printf("%d. %s\n", idx, Q.Tab[i]);
+        idx ++;
+        if (i == IDX_MAX) 
+        {
+            i = 0;
+        } 
+        else 
+        {
+            i++;
         }
-        printf("%d]\n", Q.Tab[i]);
     }
+    printf("%sQ]\n", Q.Tab[i]);
 }
