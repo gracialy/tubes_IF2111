@@ -1,9 +1,20 @@
 #include "main.h"
+#include<stdio.h>
+char currentSong[NMax];
+char currentPlaylist[NMax];
 
 char listArtis[100][50];
 Map listAlbum;
+List listPlaylist;
+Queue songQueue;
+Stack songHistory;
 
 int main(){
+    char command[NMax];
+    char currentAlbum[NMax];
+    CreateQueue(&songQueue);
+    CreateEmptySt(&songHistory);
+    MakeList(&listPlaylist);
     CreateMapEmpty(&listAlbum);
     printf(">> ");
     STARTWORD();
@@ -12,29 +23,22 @@ int main(){
     boolean loaded = false;
     while (!loaded)
     {
-        if (isEqual("START"))
+        getWord(0, command);
+        if (isEqual(-1, "START"))
         {
-            konfigurasi(listArtis, &listAlbum, "src/save/konfigurasi.txt");
+            konfigurasi(listArtis, &listAlbum, "konfigurasi.txt", currentSong, &songQueue, &songHistory, &listPlaylist);
             loaded = true;
         }
-        else if (isEqual("LOAD"))
+        else if (isEqual(0, "LOAD"))
         {
-            ADVWORD();
-            konfigurasi(listArtis, &listAlbum, currentWord.TabWord);
+            getWord(1, command);
+            konfigurasi(listArtis, &listAlbum, command, currentSong, &songQueue, &songHistory, &listPlaylist);
             loaded = true;
         }
-        else if (isEqual("HELP"))
+        else if (isEqual(-1, "HELP"))
         {
-            //HELP();
+            helpBeforeLoad();
         }
+        else printf("Command yang dimasukkan tidak valid\n");
     }
-    while (loaded)
-    {
-        printf(">> ");
-        ADVWORD();
-        if (isEqual("LIST DEFAULT")) ListDefault(listArtis, listAlbum);
-    }
-    
-
 }
-

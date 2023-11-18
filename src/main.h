@@ -12,6 +12,7 @@
 #include "Command/play.h"
 #include "Command/song.h"
 #include "Command/help.h"
+#include "Command/welcome.h"
 
 // #include "ADT/list/list.h"
 // #include "ADT/Map/map.h"
