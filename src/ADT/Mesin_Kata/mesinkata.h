@@ -48,10 +48,14 @@ void CopyWord();
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
-boolean isEqual(char* str);
+boolean isEqual(int idx, char* str);
 
-void displayWord(Word w);
-/* Menampilkan kata w */
+void getWord(int idx, char* output);
 
+void stringCopy(char* target, char* copy);
+
+boolean CompareString(char* a, char*b);
+
+void konkatString(char* output, char* a, char* b);
 
 #endif
