@@ -3,11 +3,15 @@
 #include <time.h>
 #include <math.h>
 
-#include "ADT/Mesin_Kata/mesinkata.h"
-
 #include "Command/boolean.h"
 #include "Command/konfigurasi.h"
 #include "Command/showlist.h"
+#include "Command/queue_song.h"
+#include "Command/playlist.h"
+#include "Command/status.h"
+#include "Command/play.h"
+#include "Command/song.h"
+#include "Command/help.h"
 
 // #include "ADT/list/list.h"
 // #include "ADT/Map/map.h"
@@ -23,7 +27,13 @@
 
 // Daftar Header Command
 
+extern char currentSong[NMax];
+extern char currentPlaylist[NMax];
+
 extern char listArtis[100][50];
 extern Map listAlbum;
+extern List listPlaylist;
+extern Queue songQueue;
+extern Stack songHistory;
 
 #endif
