@@ -16,12 +16,13 @@ boolean IsMapFull(Map M)
     return M.Count == MaxElM;
 }
 
-valuetype Value(Map M, char* name)
+valuetype Value(Map M, char *name)
 {
     int i = 0;
     while (i < M.Count)
     {
-        if (CompareString(M.Elements[i].Key.Name, name));
+        if (CompareString(M.Elements[i].Key.Name, name))
+            ;
         {
             return M.Elements[i].Value;
         }
@@ -37,11 +38,10 @@ void InsertMap(Map *M, keytype k, valuetype v)
         M->Count++;
         M->Elements[M->Count - 1].Key = k;
         M->Elements[M->Count - 1].Value = v;
-    
     }
 }
 
-void DeleteMap(Map *M, char* name)
+void DeleteMap(Map *M, char *name)
 {
     if (M->Count == 1)
     {
@@ -67,7 +67,7 @@ void DeleteMap(Map *M, char* name)
     }
 }
 
-boolean IsMemberMap(Map M, char* name)
+boolean IsMemberMap(Map M, char *name)
 {
     int i = 0;
     while (i < M.Count)
@@ -93,7 +93,7 @@ boolean IsMemberMap(Map M, char* name)
 // 	}
 // 	if (key_based) {
 // 		for (int k=0 ; k<m3.Count-1 ; k++){
-// 			for (int l=k+1; l<m3.Count ; l++){	
+// 			for (int l=k+1; l<m3.Count ; l++){
 // 				if (wordToInt(m3.Elements[k].Key) > wordToInt(m3.Elements[l].Key)){
 // 					info temp;
 // 					temp=m3.Elements[k];
@@ -105,7 +105,7 @@ boolean IsMemberMap(Map M, char* name)
 // 	}
 // 	else{
 // 		for (int k=0 ; k<m3.Count-1 ; k++){
-// 			for (int l=k+1; l<m3.Count ; l++){	
+// 			for (int l=k+1; l<m3.Count ; l++){
 // 				if (m3.Elements[k].Value>m3.Elements[l].Value){
 // 					info temp;
 // 					temp=m3.Elements[k];
@@ -121,12 +121,13 @@ boolean IsMemberMap(Map M, char* name)
 // 					}
 // 				}
 // 			}
-// 		}		
+// 		}
 // 	}
 // 	return m3;
 // }
 
-void PrintMap(Map m){
+void PrintMap(Map m)
+{
     for (int i = 0; i < m.Count; ++i)
     {
         printf("<%s, %s>\n", m.Elements[i].Value, m.Elements[i].Key.Name);
@@ -138,17 +139,8 @@ void PrintMap(Map m){
     }
 }
 
-boolean CompareString(char* a, char*b){
-    int idx = 0;
-    while ((a[idx] == b[idx] || a[idx] == b[idx] + 32 || a[idx] == b[idx] - 32)&& (a[idx] != '\0' || b[idx] != '\0'))
-    {
-        idx++;
-    }
-    if (a[idx] != b[idx]) return false;
-    return true;
-}
-
-int GetIdx(Map m, valuetype artistName){
+int GetIdx(Map m, valuetype artistName)
+{
     for (int i = 0; i < m.Count; ++i)
     {
         if (CompareString(m.Elements[i].Value, artistName))
@@ -158,5 +150,3 @@ int GetIdx(Map m, valuetype artistName){
     }
     return -1;
 }
-
-
