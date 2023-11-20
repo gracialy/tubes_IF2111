@@ -81,3 +81,20 @@ int stringToInt(char* str){
     }
     return res;
 }
+
+void getSong(char* output){
+    int semicol = 0, idx = 0;
+    for (int i = 0; i < currentLine.Length; ++i)
+    {
+        if (semicol == 2)
+        {
+            output[idx] = currentLine.TabWord[i];
+            idx ++;
+        }
+        if (currentLine.TabWord[i] == ';')
+        {
+            semicol ++;
+        }
+    }
+    output[idx] = '\0';
+}

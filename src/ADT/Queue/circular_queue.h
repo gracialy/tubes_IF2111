@@ -29,13 +29,13 @@ typedef struct {
 #define     TAIL(q) (q).Tab[(q).idxTail]
 
 /* ********* Prototype ********* */
-boolean IsEmpty (Queue Q);
+boolean IsEmptyQ (Queue Q);
 /* Mengirim true jika Q kosong */
 /* yaitu ketika idxHead=IDX_UNDEF dan idxTail=IDX_UNDEF */
-boolean IsFull (Queue Q);
+boolean IsFullQ (Queue Q);
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu ketika idxHead=0 dan idxTail=IDX_MAX atau idxHead=idxTail+1 ketika idxHead > idxTail */
-int Length (Queue Q);
+int LengthQ (Queue Q);
 /* Mengirimkan banyaknya elemen Q, 0 jika kosong */
 
 /* *** Kreator *** */
@@ -69,6 +69,5 @@ void displayQueue(Queue q);
 /* Jika Queue kosong : menulis [] */
 /* Note: Output mengandung newline */
 
-void setElementQueue(char* target, char* copy);
 
 #endif

@@ -39,11 +39,11 @@ void RenameSet(Set *S, char* str);
 /* F.S. Mengganti nama dari sebuah Set S */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsEmptyS(Set S);
+boolean IsEmpty(Set S);
 /* Mengirim true jika Set S kosong*/
 /* Ciri Set kosong : count bernilai Nil */
 
-boolean IsFullS(Set S);
+boolean IsFull(Set S);
 /* Mengirim true jika Set S penuh */
 /* Ciri Set penuh : count bernilai MaxEl */
 

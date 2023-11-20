@@ -2,15 +2,23 @@
 
 int banyakArtis;
 
-void konfigurasi(char listArtis[100][50], Map* listAlbum, char* path){
-    STARTFILE(path);
+void konfigurasi(char listArtis[100][50], Map* listAlbum, char* path, char* currentSong, 
+    Queue* songQueue, Stack* songHistory, List* listPlaylist){
+    if (!isPathValid(path))
+    {
+        printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
+        return;
+    }
+    char a[] = "src/save/", b[NMax];
+    konkatString(b, a, path);
+    STARTFILE(b);
     ADVFILE(true);
-    banyakArtis = currentInt;
+    int banyakArtis = currentInt;
     for (int i = 0; i < banyakArtis; ++i) // ngebaca artis
     {
         ADVFILE(true);
         int banyakAlbum = currentInt;
-        copyString(listArtis[i], currentLine.TabWord);
+        stringCopy(listArtis[i], currentLine.TabWord);
 
         for (int j = 0; j < banyakAlbum; ++j) //ngebaca album
         {
@@ -25,16 +33,62 @@ void konfigurasi(char listArtis[100][50], Map* listAlbum, char* path){
             }
             listAlbum->Elements[listAlbum->Count].Value = listArtis[i];
             listAlbum->Count ++;
-        }
+        } 
     }
+    if (!isEOF())
+    {
+        char song[NMax];
+        ADVFILE(false);
+        getSong(song);
+        stringCopy(currentSong, song);
+        ADVFILE(true);
+        int banyakQueue = currentInt;
+        for (int i = 0; i < banyakQueue; ++i)
+        {
+            ADVFILE(false);
+            getSong(song);
+            enqueue(songQueue, song);
+        }
+        ADVFILE(true);
+        int banyakStack = currentInt;
+        for (int i = 0; i < banyakStack; ++i)
+        {
+            ADVFILE(false);
+            getSong(song);
+            Push(songHistory, song);
+        }
+        ADVFILE(true);
+        int banyakPlaylist = currentInt;
+        for (int i = 0; i < banyakPlaylist; ++i)
+        {
+            ADVFILE(true);
+            int banyakIsiPlaylist = currentInt;
+            AddElementL(listPlaylist, currentLine.TabWord);
+            CreateEmptyLL(&listPlaylist->A[i]);
+            for (int j = 0; j < banyakIsiPlaylist; ++j)
+            {
+                ADVFILE(false);
+                getSong(song);
+                InsertLastLL(&listPlaylist->A[i], song);
+            }
+        }
+
+
+
+    }
+
     printf("File konfigurasi berhasil dibaca. WayangWave berhasil dijalankan!\n");
 }
 
-void copyString(char* copy, char* target){
-    int i;
-    for (i = 0; target[i] != '\0'; ++i)
+boolean isPathValid(char* path){
+    char a[] = "src/save/", b[NMax];
+    konkatString(b, a, path);
+    FILE *pita = fopen(b, "r");
+    boolean valid = true;
+    if (pita == NULL)
     {
-        copy[i] = target[i];
+        valid = false;
     }
-    copy[i] = '\0';
+    fclose(pita);
+    return valid;
 }

@@ -107,3 +107,27 @@ void stringCopy(char* target, char* copy){
     }
     target[i] = '\0';
 }
+
+boolean CompareString(char* a, char*b){
+    int idx = 0;
+    while ((a[idx] == b[idx] || a[idx] == b[idx] + 32 || a[idx] == b[idx] - 32)&& (a[idx] != '\0' || b[idx] != '\0'))
+    {
+        idx++;
+    }
+    if (a[idx] != b[idx]) return false;
+    return true;
+}
+
+void konkatString(char* output, char* a, char* b){
+    int i;
+    for (i = 0; a[i] != '\0'; ++i)
+    {
+        output[i] = a[i];
+    }
+    for (int j = 0; b[j] != '\0'; ++j)
+    {
+        output[i] = b[j];
+        ++i;
+    }
+    output[i] = '\0';
+}

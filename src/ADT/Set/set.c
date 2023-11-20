@@ -20,13 +20,13 @@ void RenameSet(Set *S, char* str){
 }
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsEmptyS(Set S){
+boolean IsEmpty(Set S){
         return S.Count == NilS;
 }
 /* Mengirim true jika Set S kosong*/
 /* Ciri Set kosong : count bernilai Nil */
 
-boolean IsFullS(Set S){
+boolean IsFull(Set S){
         return S.Count == MaxElS;
 }
 /* Mengirim true jika Set S penuh */

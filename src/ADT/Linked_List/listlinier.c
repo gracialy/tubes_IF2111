@@ -1,122 +1,129 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "boolean.h"
 #include "listlinier.h"
 
-boolean IsEmpty(List L)
+boolean IsEmptyLL(LinkedList L)
 {
-    return First(L) == Nil;
+    return First(L) == NilLL;
 }
 
-void CreateEmpty(List *L)
+void CreateEmptyLL(LinkedList *L)
 {
-    First(*L) = Nil;
+    First(*L) = NilLL;
 }
 
-address Alokasi(infotype X)
+addressLL AlokasiLL(infotypeLL* X)
 {
-    address P;
-    P = (address)malloc(sizeof(ElmtList));
-    if (P != Nil)
+    addressLL P;
+    P = (addressLL)malloc(sizeof(ElmtList) * NMax);
+    if (P != NilLL)
     {
-        Info(P) = X;
-        Next(P) = Nil;
+        stringCopy(P->info, X);
+        P->next = NilLL;
     }
     return P;
 }
 
-void Dealokasi(address *P)
+void Dealokasi(addressLL *P)
 {
     free(*P);
 }
 
-address Search(List L, infotype X)
+addressLL SearchLL(LinkedList L, infotypeLL* X)
 {
-    address P = First(L);
+    addressLL P = First(L);
     boolean isFound = false;
-    while (P != Nil && !isFound)
+    while (P != NilLL && !isFound)
     {
-        if (Info(P) == X)
-            isFound = true;
-        else
-            P = Next(P);
+        if (CompareString(P->info, X)) isFound = true;
+        else P = Next(P);
     }
     return P;
 }
 
-void InsVFirst(List *L, infotype X)
+void InsVFirst(LinkedList *L, infotypeLL* X)
 {
-    address P = Alokasi(X);
-    if (P != Nil)
+    addressLL P = AlokasiLL(X);
+    if (P != NilLL)
         InsertFirst(L, P);
 }
 
-void InsVLast(List *L, infotype X)
+void InsertLastLL(LinkedList* L, infotypeLL* X){
+    addressLL p = L->First;
+    addressLL np = AlokasiLL(X);
+    if (IsEmptyLL(*L))
+    {
+        L->First = np;
+        return;
+    }
+    while (p->next != NilLL) p = p->next;
+    p->next = np;
+}
+
+void InsVLast(LinkedList *L, infotypeLL* X)
 {
-    address P = Alokasi(X);
-    if (P != Nil)
+    addressLL P = AlokasiLL(X);
+    if (P != NilLL)
         InsertLast(L, P);
 }
 
-void DelVFirst(List *L, infotype *X)
+void DelVFirst(LinkedList *L, infotypeLL *X)
 {
-    address P;
+    addressLL P;
     DelFirst(L, &P);
-    *X = Info(P);
+    stringCopy(X, P->info);
     Dealokasi(&P);
 }
 
-void DelVLast(List *L, infotype *X)
+void DelVLast(LinkedList *L, infotypeLL *X)
 {
-    address P;
+    addressLL P;
     DelLast(L, &P);
-    *X = Info(P);
+    stringCopy(X, P->info);
     Dealokasi(&P);
 }
 
-void InsertFirst(List *L, address P)
+void InsertFirst(LinkedList *L, addressLL P)
 {
     Next(P) = First(*L);
     First(*L) = P;
 }
 
-void InsertAfter(List *L, address P, address Prec)
+void InsertAfter(LinkedList *L, addressLL P, addressLL Prec)
 {
     Next(P) = Next(Prec);
     Next(Prec) = P;
 }
 
-void InsertLast(List *L, address P)
+void InsertLast(LinkedList *L, addressLL P)
 {
 
-    if (IsEmpty(*L))
+    if (IsEmptyLL(*L))
         InsertFirst(L, P);
     else
     {
-        address last = First(*L);
-        while (Next(last) != Nil)
+        addressLL last = First(*L);
+        while (Next(last) != NilLL)
             last = Next(last);
         InsertAfter(L, P, last);
     }
 }
 
-void DelFirst(List *L, address *P)
+void DelFirst(LinkedList *L, addressLL *P)
 {
     *P = First(*L);
     First(*L) = Next(*P);
-    Next(*P) = Nil;
+    Next(*P) = NilLL;
 }
 
-void DelP(List *L, infotype X)
+void DelP(LinkedList *L, infotypeLL* X)
 {
-    address P = Search(*L, X);
-    if (P != Nil)
+    addressLL P = SearchLL(*L, X);
+    if (P != NilLL)
     {
         if (P == First(*L))
             DelFirst(L, &P);
         else
         {
-            address Prec = First(*L);
+            addressLL Prec = First(*L);
             while (Next(Prec) != P)
                 Prec = Next(Prec);
             DelAfter(L, &P, Prec);
@@ -124,56 +131,57 @@ void DelP(List *L, infotype X)
     }
 }
 
-void DelLast(List *L, address *P)
+void DelLast(LinkedList *L, addressLL *P)
 {
-    address last = First(*L);
-    address Prec = Nil;
-    while (Next(last) != Nil)
+    addressLL last = First(*L);
+    addressLL Prec = NilLL;
+    while (Next(last) != NilLL)
     {
         Prec = last;
         last = Next(last);
     }
 
     *P = last;
-    if (Prec == Nil)
-        First(*L) = Nil;
+    if (Prec == NilLL)
+        First(*L) = NilLL;
     else
-        Next(Prec) = Nil;
+        Next(Prec) = NilLL;
 }
 
-void DelAfter(List *L, address *Pdel, address Prec)
+void DelAfter(LinkedList *L, addressLL *Pdel, addressLL Prec)
 {
     *Pdel = Next(Prec);
-    if (Next(Prec) != Nil)
+    if (Next(Prec) != NilLL)
     {
         Next(Prec) = Next(Next(Prec));
-        Next(*Pdel) = Nil;
+        Next(*Pdel) = NilLL;
     }
 }
 
-void PrintInfo(List L)
+void PrintInfo(LinkedList L)
 {
-    address P;
+    addressLL P;
     printf("[");
-    if (!IsEmpty(L))
+    if (!IsEmptyLL(L))
     {
         P = First(L);
-        while (P != Nil)
+        while (P != NilLL)
         {
             if (P != First(L))
                 printf(",");
-            printf("%d", Info(P));
+            printf("%s", Info(P));
             P = Next(P);
         }
     }
     printf("]\n");
 }
 
-int NbElmt(List L)
+int NbElmt(LinkedList L)
 {
-    int count = 0;
-    address P = First(L);
-    while (P != Nil)
+    if (IsEmptyLL(L)) return 0;
+    int count = 1;
+    addressLL P = First(L);
+    while (P->next != NilLL)
     {
         P = Next(P);
         count++;
@@ -181,139 +189,51 @@ int NbElmt(List L)
     return count;
 }
 
-infotype Max(List L)
-{
-    address P = First(L);
-    infotype max = Info(P);
-    while (Next(P) != Nil)
+void displayLinkedList(LinkedList L){
+    int idx = 1;
+    addressLL P = First(L);
+    while (P != NilLL)
     {
-        P = Next(P);
-        if (Info(P) > max)
-            max = Info(P);
+        printf("  %d. %s\n", idx, P->info);
+        idx++;
+        P = P->next;
     }
-    return max;
 }
 
-address AdrMax(List L)
-{
-    address P = First(L);
-    address addrMax = First(L);
-    infotype max = Info(P);
-    while (Next(P) != Nil)
+void swapLinkedList(LinkedList* L, int x, int y){
+    if (x > y)
     {
-        P = Next(P);
-        if (Info(P) > max)
+        int temp = x;
+        x = y;
+        y = temp;
+    }
+    x--; y--;
+
+    char temp[100][NMax];
+    int n = 0;
+    addressLL p = L->First;
+    while (p != NULL)
+    {
+        stringCopy(temp[n], p->info);
+        n++;
+        p = p->next;
+    }
+    CreateEmptyLL(L);
+
+    for (int i = 0; i < n; ++i)
+    {
+        if (i == x)
         {
-            max = Info(P);
-            addrMax = P;
+            InsertLastLL(L, temp[y]);
+        }
+        else if (i == y)
+        {
+            InsertLastLL(L, temp[x]);
+        }
+        else
+        {
+            InsertLastLL(L, temp[i]);
         }
     }
-    return addrMax;
-}
 
-infotype Min(List L)
-{
-    address P = First(L);
-    infotype min = Info(P);
-    while (Next(P) != Nil)
-    {
-        P = Next(P);
-        if (Info(P) < min)
-            min = Info(P);
-    }
-    return min;
-}
-
-address AdrMin(List L)
-{
-    address P = First(L);
-    address addrMin = First(L);
-    infotype min = Info(P);
-    while (Next(P) != Nil)
-    {
-        P = Next(P);
-        if (Info(P) < min)
-        {
-            min = Info(P);
-            addrMin = P;
-        }
-    }
-    return addrMin;
-}
-
-float Average(List L)
-{
-    address P = First(L);
-    int count = 0, total = 0;
-    while (P != Nil)
-    {
-        total += Info(P);
-        count++;
-        P = Next(P);
-    }
-    return (float)total / count;
-}
-
-void InversList(List *L)
-{
-    address P = First(*L);
-    address loc = P;
-    address Prec = Next(P);
-    while (Prec != Nil)
-    {
-        loc = Prec;
-        Prec = Next(Prec);
-        InsertFirst(L, loc);
-        Next(P) = Prec;
-    }
-}
-
-void Konkat1(List *L1, List *L2, List *L3)
-{
-    address lastL1 = First(*L1);
-    CreateEmpty(L3);
-    if (IsEmpty(*L1))
-        First(*L3) = First(*L2);
-    else
-    {
-        First(*L3) = First(*L1);
-        while (Next(lastL1) != Nil)
-            lastL1 = Next(lastL1);
-        Next(lastL1) = First(*L2);
-    }
-    CreateEmpty(L1);
-    CreateEmpty(L2);
-}
-
-void KonkatSorted(List *L1, List *L2, List *L3) {
-    address P1 = First(*L1); 
-    address P2 = First(*L2);
-    CreateEmpty(L3);
-    while (P1 != Nil || P2 != Nil)
-    {
-        if ((Info(P1) <= Info(P2)) || P2 == Nil)
-        {
-            InsVLast(L3, Info(P1));
-            P1 = Next(P1);
-        }
-        else if ((Info(P1) > Info(P2)) || P1 == Nil)
-        {
-            InsVLast(L3, Info(P2));
-            P2 = Next(P2);
-        }
-    }
-}
-
-int main() {
-    List l1, l2, l3;
-    CreateEmpty(&l1); CreateEmpty(&l2);
-    InsVLast(&l1, 1);
-    InsVLast(&l1, 2);
-    InsVLast(&l1, 4);
-    InsVLast(&l2, 1);
-    InsVLast(&l2, 3);
-    InsVLast(&l2, 4);
-    KonkatSorted(&l1, &l2, &l3);
-    PrintInfo(l3);
-    return 0;
 }
