@@ -43,3 +43,4 @@ int main() {
 
     return 0;
 }
+// gcc src/ADT/Stack/driv_st.c src/ADT/Stack/stack.c src/ADT/Mesin_Kata/mesinkata.c -o tes
