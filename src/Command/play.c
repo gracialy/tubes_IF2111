@@ -7,7 +7,13 @@ void playSong (char* currentSong, char listArtis[100][50], Map listAlbum, Queue*
 }
 
 void playPlaylist(char* currentSong, Queue* songQueue, List listPlaylist, Stack* songHistory, char* currentPlaylist){
-    showPlaylist(listPlaylist);
+    printf("Daftar playlist yang kamu miliki : \n");
+    if (listPlaylist.Neff == 0) 
+    {
+        printf("Kamu tidak memiliki playlist.\n");
+        return;
+    }
+    DisplayList(listPlaylist);
     printf("Masukkan ID playlist : ");
     ADVWORD();
     int idx = stringToInt(currentWord.TabWord) - 1;

@@ -55,7 +55,13 @@ void InsertAlbumToPlaylist(List* playlist, char listArtis[100][50], Map listAlbu
 	char album[NMax];
 	stringCopy(album, currentWord.TabWord);
 
-	showPlaylist(*playlist);
+	printf("Daftar playlist yang kamu miliki : \n");
+    if (listPlaylist.Neff == 0) 
+    {
+        printf("Kamu tidak memiliki playlist.\n");
+        return;
+    }
+    DisplayList(listPlaylist);
     if (playlist->Neff == 0) return;
 	printf("Masukkan ID Playlist yang dipilih : ");
 	ADVWORD();

@@ -73,7 +73,6 @@ void konfigurasi(char listArtis[100][50], Map* listAlbum, char* path, char* curr
             }
         }
     }
-
     printf("File konfigurasi berhasil dibaca. WayangWave berhasil dijalankan!\n");
 }
 

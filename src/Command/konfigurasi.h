@@ -3,6 +3,7 @@
 
 #include "../ADT/Mesin_Baris/mesinbaris.h"
 #include "../ADT/Mesin_Kata/mesinkata.h"
+#include "../ADT/Mesin_Karakter/mesinkarakter.h"
 #include "../ADT/Map/map.h"
 #include "playlist.h"
 #include "queue_song.h"

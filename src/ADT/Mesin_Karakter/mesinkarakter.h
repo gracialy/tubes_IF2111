@@ -31,4 +31,6 @@ void ADV();
 
 boolean isEOF();
 
+void closeFile();
+
 #endif

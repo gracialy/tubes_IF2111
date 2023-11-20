@@ -27,3 +27,7 @@ void ADV() {
 boolean isEOF(){
     return feof(pita);
 }
+
+void closeFile(){
+    fclose(pita);
+}
