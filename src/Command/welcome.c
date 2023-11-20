@@ -37,5 +37,6 @@ void welcome()
     printf("              \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \n");
     printf("                                                                    \n");
     printf("    ******************************************************************** \n");
-    printf("c h o o s e  << START >>  o r  << LOAD >>"); 
+    printf("                    c h o o s e  << START >>  o r  << LOAD >> \n"); 
+    printf("                          o r >> HELP << to see command \n");
     }

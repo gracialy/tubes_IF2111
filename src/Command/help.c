@@ -7,7 +7,7 @@ void helpBeforeLoad()
     printf("  +:*+.+:*+.+:*+.+:*+.+:*+.  H E L P  M E N U   W A Y A N G W A V E.+*:+.+*:+.+*:+.+*:+.+*:+. \n\n");
     printf("1.  START               : Masuk ke sesi baru\n");
     printf("2.  LOAD                : Mulai sesi Berdasarkan file Konfigurasi\n");
-    printf("==========================================================================\n");
+    printf("==================================================================================================\n");
 }
 /* I.S. sembarang */
 /* F.S. mengembalikan output berupa daftar command yang dapat dimasukkan berikut fungsinya */
@@ -24,7 +24,7 @@ void helpAfterLoad(){
     printf("7.  SAVE<filename.txt>      : Menyimpan state aplikasi terbaru\n");
     printf("8.  SHOWPLAYLIST            : Menampilkan Playlist yang ada\n");
     printf("9.  QUIT                    : Keluar dari aplikasi WayangWave\n");
-    printf("==========================================================================\n");
+    printf("==================================================================================================\n");
 }
 /* I.S. sembarang */
 /* F.S. mengembalikan output berupa daftar command yang dapat dimasukkan berikut fungsinya */
