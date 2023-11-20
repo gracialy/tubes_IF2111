@@ -45,9 +45,10 @@ int main(){
                 ADVWORD();
             }
         }
-        else if (isEqual(-1, "HELP"))
+        else if (isEqual(0,"HELP"))
         {
             helpBeforeLoad();
+            printf(">> ");
         }
         else
         {
@@ -65,6 +66,11 @@ int main(){
             if (isEqual(1, "DEFAULT")) ListDefault(listArtis, listAlbum);
             else if (isEqual(1, "PLAYLIST")) showPlaylist(listPlaylist);
         }
+        else if (isEqual(0, "HELP"))
+        {
+            helpAfterLoad();
+        }
+        
         else if (isEqual(0, "PLAY"))
         {
             if (isEqual(1, "SONG")) playSong(currentSong, listArtis, listAlbum, &songQueue, currentPlaylist);
