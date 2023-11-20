@@ -56,10 +56,10 @@ void CopyLine(boolean readDigit)
     {
         while(currentChar != BLANK && currentChar != NEWLINE && !isEOF())
         {
-            currentLine.TabWord[currentLine.Length] = currentChar;
-            currentLine.Length++;
+            currentLine.TabWord[currentLine.Length++] = currentChar;
             ADV();
         }
+        currentLine.TabWord[currentLine.Length] = '\0';
         currentInt = stringToInt(currentLine.TabWord);
         currentLine.Length = 0;
     }
@@ -76,8 +76,25 @@ void CopyLine(boolean readDigit)
 
 int stringToInt(char* str){
     int res = 0;
-    for (int i = 0; i < currentLine.Length; ++i){
+    for (int i = 0; str[i] != '\0'; ++i){
         res = res * 10 + (str[i] - '0');
     }
     return res;
+}
+
+void getSong(char* output){
+    int semicol = 0, idx = 0;
+    for (int i = 0; i < currentLine.Length; ++i)
+    {
+        if (semicol == 2)
+        {
+            output[idx] = currentLine.TabWord[i];
+            idx ++;
+        }
+        if (currentLine.TabWord[i] == ';')
+        {
+            semicol ++;
+        }
+    }
+    output[idx] = '\0';
 }

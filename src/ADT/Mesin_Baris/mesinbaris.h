@@ -50,4 +50,6 @@ void CopyLine(boolean readDigit);
 
 int stringToInt(char* str);
 
+void getSong(char* output);
+
 #endif
