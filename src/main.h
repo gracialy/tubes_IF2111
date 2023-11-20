@@ -13,6 +13,7 @@
 #include "Command/song.h"
 #include "Command/welcome.h"
 #include "Command/help.h"
+#include "Command/save.h"
 
 #ifndef HEADER_H
 #define HEADER_H

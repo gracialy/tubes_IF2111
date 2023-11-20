@@ -17,15 +17,15 @@ int main(){
     MakeList(&listPlaylist);
     CreateMapEmpty(&listAlbum);
     printf("\n");
-    welcome();
+    // welcome();
     printf("\n");
     printf(">> ");
     STARTWORD();
-    ADVWORD();
 
     boolean loaded = false;
     while (!loaded)
     {
+        ADVWORD();
         getWord(0, command);
         if (isEqual(-1, "START"))
         {
@@ -36,14 +36,7 @@ int main(){
         {
             getWord(1, command);
             konfigurasi(listArtis, &listAlbum, command, currentSong, &songQueue, &songHistory, &listPlaylist);
-            if (isPathValid(command))
-            {
-                loaded = true;
-            }
-            else{
-                printf(">> ");
-                ADVWORD();
-            }
+            loaded = true;
         }
         else if (isEqual(0,"HELP"))
         {
@@ -101,6 +94,7 @@ int main(){
             else if (isEqual(1, "SWAP")) playlistSwap(&listPlaylist);
         }
         else if (isEqual(0, "STATUS")) status(songQueue, currentPlaylist, currentSong, listAlbum);
+        else if (isEqual(0, "SAVE")) save(listArtis, &listAlbum, currentSong, &songQueue, &songHistory, &listPlaylist);
 
 
         else if(isEqual(0, "SHOWPLAYLIST"))
