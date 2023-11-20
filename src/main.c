@@ -16,6 +16,9 @@ int main(){
     CreateEmptySt(&songHistory);
     MakeList(&listPlaylist);
     CreateMapEmpty(&listAlbum);
+    printf("\n");
+    welcome();
+    printf("\n");
     printf(">> ");
     STARTWORD();
     ADVWORD();
@@ -44,7 +47,7 @@ int main(){
         }
         else if (isEqual(-1, "HELP"))
         {
-            //HELP();
+            helpBeforeLoad();
         }
         else
         {

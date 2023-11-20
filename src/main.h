@@ -11,6 +11,8 @@
 #include "Command/status.h"
 #include "Command/play.h"
 #include "Command/song.h"
+#include "Command/welcome.h"
+#include "Command/help.h"
 
 #ifndef HEADER_H
 #define HEADER_H
