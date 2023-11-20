@@ -57,4 +57,7 @@ void Pop(Stack * S, infotypeSt* X);
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 
+void PrintStack(Stack S);
+    /* I.S. Stack S terdefinisi */
+    /* F.S. Elemen-elemen dalam stack dicetak dari TOP ke bawah dengan format [elemen1, elemen2, ..., elemenN] */
 #endif

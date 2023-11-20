@@ -43,3 +43,19 @@ void Pop (Stack * S, infotypeSt* X)
     stringCopy(X, S->T[S->TOP]);
     S->TOP --;
 }
+
+void PrintStack(Stack S)
+{
+      if (IsEmptySt(S)) {
+        printf("Stack kosong.\n");
+    } else {
+        printf("[");
+        for (int i = Top(S); i >= 0; i--) {
+            printf("%s", S.T[i]);
+            if (i > 0) {
+                printf(", ");
+            }
+        }
+        printf("]\n");
+    }
+}
