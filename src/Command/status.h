@@ -9,4 +9,4 @@ void status(Queue queue, char* current_playlist);
    F.S. Menampilkan status sesuai spesifikasi
    */
 
-#endif;
+#endif
