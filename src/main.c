@@ -37,6 +37,10 @@ int main(){
             {
                 loaded = true;
             }
+            else{
+                printf(">> ");
+                ADVWORD();
+            }
         }
         else if (isEqual(-1, "HELP"))
         {
