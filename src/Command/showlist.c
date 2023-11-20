@@ -132,6 +132,11 @@ void showPlaylist(List listPlaylist){
     char temp[NMax];
     getWord(0, temp);
     int id = stringToInt(temp);
+    if (id <= 0 || id > listPlaylist.Neff)
+    {
+        printf("Playlist tidak ditemukan\n");
+        return;
+    }
     displayLinkedList(listPlaylist.A[id - 1]);
 }
 
