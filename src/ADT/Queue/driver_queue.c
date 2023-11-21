@@ -1,25 +1,30 @@
 #include <stdio.h>
 #include "circular_queue.h"
 
-int main(){
-    Queue Q1,Q2;
-    char* temp;
-    CreateQueue(&Q1);
-    CreateQueue(&Q2);
-    for (int i =1; i <= 100; ++i) {
-        enqueue(&Q1, i);
-    }
-    if (IsFull(Q1)){
-        for(int i=1;i <= 50;i++)
-        {
-            dequeue(&Q1, temp);
-            enqueue(&Q2,i);
-        }
-        insertFirstQueue(&Q1, "inserted");
-        displayQueue(Q1);
-        displayQueue(Q2);
-        int a = Length(Q1);
-        int b = Length(Q2);
-        printf("Banyak elemen pada Q1 adalah %d dan Banyak elemen pada Q2 adalah %d", a,b);
-    }
+int main() {
+    Queue Q;
+    CreateQueue(&Q);
+
+    char song1[] = "Song 1";
+    char song2[] = "Song 2";
+    char song3[] = "Song 3";
+
+    enqueue(&Q, song1);
+    enqueue(&Q, song2);
+    enqueue(&Q, song3);
+
+    displayQueue(Q);
+
+    char target[NMax];
+    dequeue(&Q, target);
+    printf("Dequeued: %s\n", target);
+
+    displayQueue(Q);
+
+    char song4[] = "Song 4";
+    insertFirstQueue(&Q, song4);
+    printf("After inserting at the beginning:\n");
+    displayQueue(Q);
+
+    return 0;
 }
