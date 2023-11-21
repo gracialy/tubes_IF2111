@@ -13,7 +13,7 @@ void CreateEmptyLL(LinkedList *L)
 addressLL AlokasiLL(infotypeLL* X)
 {
     addressLL P;
-    P = (addressLL)malloc(sizeof(ElmtList) * NMax);
+    P = (addressLL) malloc(504*NMax);
     if (P != NilLL)
     {
         stringCopy(P->info, X);
