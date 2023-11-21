@@ -36,7 +36,14 @@ int main(){
         {
             getWord(1, command);
             konfigurasi(listArtis, &listAlbum, command, currentSong, &songQueue, &songHistory, &listPlaylist);
-            loaded = true;
+            if (isPathValid(command)) 
+            {
+                loaded = true;
+            }
+            else{
+                printf(">> ");
+            }
+
         }
         else if (isEqual(0,"HELP"))
         {
@@ -47,7 +54,6 @@ int main(){
         {
             printf("Command yang dimasukkan tidak valid\n");
             printf(">> ");
-            ADVWORD();
         }
     }
     while (loaded)
