@@ -9,6 +9,7 @@ void loadingQuit()
     int i, j, delay;
 
 /* ALGORITMA */
+    printf("\n");
     for(i = 0; i < 10; i++) { // jumlah '>'
         for(j = 0; j < 100000000; j++) { // buat delay prosesnya
             delay = j;
@@ -31,8 +32,9 @@ void loadingQuit()
         delay = j;
         }
 }
-void QuitBeforeLoaded(){
-    loadingQuit();
+
+void bannerQuit(){
+    printf("\n");
     printf("        	  ***********  G O O D   B Y E  *********** \n");
     printf("					                				\n");
     printf("          		Anda keluar dari WayangWave	\n");
@@ -41,24 +43,33 @@ void QuitBeforeLoaded(){
     printf("                                                                    \n");
     printf("    ************************************************************************ \n");
     printf("\n");
+}
+void QuitBeforeLoaded(){
+    loadingQuit();
+    bannerQuit();
     exit(0);
 }
 
 void QuitAfterLoaded(){
-    printf("Apakah kamu ingin menyimpan data sesi sekarang?");
+    printf("Apakah kamu ingin menyimpan data sesi sekarang?(Y/N) ");
     ADVWORD();
     if (isEqual(-1, "Y"))
     {
         save();
+        loadingQuit();       
+        bannerQuit();
     }
-    loadingQuit();       
-    printf("        	  ***********  G O O D   B Y E  *********** \n");
-    printf("					                				\n");
-    printf("          		Anda keluar dari WayangWave	\n");
-    printf("           Sampai Bertemu di waktu dimana kita akan dipertemukan kembali \n");
-    printf("               		       See u ^__^                    \n");
-    printf("                                                                    \n");
-    printf("    ************************************************************************ \n");
-    printf("\n");
+    else if(isEqual(-1, "N"))
+    {
+        loadingQuit();       
+        bannerQuit();
+    }
+    else
+    {
+        printf("Command yang anda masukkan tidak valid. Silahkan pilih Y/N.\n");
+        printf(">> ");
+        QuitAfterLoaded();
+    }
+    
     exit(0);
 }
