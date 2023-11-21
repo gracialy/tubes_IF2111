@@ -113,6 +113,27 @@ void InsertAlbumToPlaylist(List* playlist, char listArtis[maxA][maxAN], Map list
     }
 }
 
+void playlistRemove(List* listPlaylist){
+    char idstr[NMax], nstr[NMax];
+    getWord(2, idstr); getWord(3, nstr);
+    int id = stringToInt(idstr), n = stringToInt(nstr);
+
+    printf("Start checking\n");
+    if (listPlaylist->Neff < id){
+        printf("Tidak ada playlist dengan ID %d.\n", id);
+        return;
+    }
+    char * namaplaylist = listPlaylist->A[id-1].Name;
+    if (NbElmt(listPlaylist->A[id-1]) < n){
+        printf("Tidak ada lagu urutan %d di playlist \"%s\"!\n", id, namaplaylist);
+        return;
+    }
+    // char * namalagu = GetL(listPlaylist->A[id-1], n).;
+    // char * namapenyanyi = GetL(listPlaylist->A[id-1], n);
+
+    printf("Lagu \"\" oleh \"\" telah dihapus dari playlist \"%s\"", namaplaylist);
+}
+
 void playlistSwap(List* listPlaylist){
     char idxstr[NMax], xstr[NMax], ystr[NMax];
     getWord(2, idxstr); getWord(3, xstr); getWord(4, ystr);
@@ -122,6 +143,7 @@ void playlistSwap(List* listPlaylist){
 
 void playlistDelete(List* listPlaylist){
     showPlaylist(*listPlaylist);
+    if (listPlaylist->Neff == 0) return;
     printf("Masukkan ID playlist yang dipilih : ");
     ADVWORD();
     char temp[NMax];

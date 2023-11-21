@@ -20,6 +20,8 @@ void InsertAlbumToPlaylist(List* playlist, char listArtis[maxA][maxAN], Map list
 
 void playlistSwap(List* listPlaylist);
 
+void playlistRemove(List* listPlaylist);
+
 void playlistDelete(List* listPlaylist);
 
 #endif
