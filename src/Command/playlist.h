@@ -11,6 +11,9 @@
 
 void CreatePlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum);
 
+boolean isAllSpace(Word word);
+int effName(Word word);
+
 void InsertPlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum);
 
 void InsertAlbumToPlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum);

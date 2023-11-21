@@ -3,8 +3,38 @@
 void CreatePlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum){
 	printf("Masukkan nama playlist yang ingin dibuat : ");
 	ADVWORD();
+    while (effName(currentWord)<3 || isAllSpace(currentWord)){
+        printf("Minimal terdapat 3 karakter selain whitespace dalam nama playlist.\nSilahkan coba lagi\n");
+        printf("Masukkan nama playlist yang ingin dibuat : ");
+        ADVWORD();
+    }
 	AddElementL(playlist, currentWord.TabWord);
-	printf("Playlist %s berhasil dibuat! \nSilakan masukkan lagu - lagu artis terkini kesayangan Anda!\n");
+	printf("Playlist %s berhasil dibuat! \nSilakan masukkan lagu - lagu artis terkini kesayangan Anda!\n", currentWord.TabWord);
+}
+
+boolean isAllSpace(Word word){
+    boolean allSpace = true;
+    for (int i = 0; i < word.Length; ++i)
+    {
+        if (word.TabWord[i] != ' ')
+        {
+            allSpace = false;
+            break;
+        }
+    }
+    return allSpace;
+}
+
+int effName(Word word){
+    int count = 0;
+    for (int i = 0; i < word.Length; ++i)
+    {
+        if (word.TabWord[i] != ' ')
+        {
+            count++;
+        }
+    }
+    return count;
 }
 
 void InsertPlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum){
