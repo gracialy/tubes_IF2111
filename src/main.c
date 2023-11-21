@@ -17,7 +17,7 @@ int main(){
     MakeList(&listPlaylist);
     CreateMapEmpty(&listAlbum);
     printf("\n");
-    welcome();
+    // welcome();
     printf("\n");
     printf(">> ");
     STARTWORD();
@@ -101,7 +101,7 @@ int main(){
             else if (isEqual(1, "DELETE")) playlistDelete(&listPlaylist);
             else if (isEqual(1, "SWAP")) playlistSwap(&listPlaylist);
         }
-        else if (isEqual(0, "STATUS")) status(songQueue, currentPlaylist, currentSong, listAlbum);
+        else if (isEqual(0, "STATUS")) status(songQueue, songHistory, currentPlaylist, currentSong, listAlbum);
         else if (isEqual(0, "SAVE")) save();
         else if (isEqual(0, "QUIT")) QuitAfterLoaded();
 

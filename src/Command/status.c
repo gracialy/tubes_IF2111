@@ -1,6 +1,12 @@
 #include "status.h"
 
-void status(Queue queue, char* current_playlist, char* currentSong, Map listAlbum){
+void status(Queue queue, Stack songHistory, char* current_playlist, char* currentSong, Map listAlbum){
+    // current playlist
+    if (current_playlist[0] != '\0'){
+        printf("Current Playlist: %s\n", current_playlist);
+    }
+
+    // now playing
     if (currentSong[0] == '\0')
     {
         printf("Now Playing:\nNo songs have been played yet. Please search for a song to begin playback.\n");
@@ -12,14 +18,14 @@ void status(Queue queue, char* current_playlist, char* currentSong, Map listAlbu
         getAlbum(currentSong, album, listAlbum);
         printf("Now Playing:\n%s - %s - %s\n", artist, currentSong, album);
     }
-    if (current_playlist[0] == '\0')
+
+    printf("Queue:\n");
+    if (IsEmptyQ(queue)) 
     {
-        printf("Queue:\n", HEAD(queue));
-        if (IsEmptyQ(queue)) 
-        {
-            printf("Your queue is empty.\n");
-            return;
-        }
+        printf("Your queue is empty.\n");
+        
+    }
+    else{
         for (int i = queue.idxHead; i <= queue.idxTail; ++i)
         {
             char artist[NMax], album[NMax];
@@ -28,22 +34,31 @@ void status(Queue queue, char* current_playlist, char* currentSong, Map listAlbu
             printf("%d. %s - %s - %s\n", i - queue.idxHead + 1, artist,  queue.Tab[i], album);
         }
     }
+    
+    // song history (opsional)
+    if (IsEmptySt(songHistory))
+    {
+        printf("Song History:\nYour history is empty.\n");
+    }
     else
     {
-        printf("Current Playlist: %s\n", current_playlist);
-        printf("Queue:\n", HEAD(queue));
-        if (IsEmptyQ(queue)) 
-        {
-            printf("Your queue is empty.\n");
-            return;
-        }
-        for (int i = queue.idxHead; i <= queue.idxTail; ++i)
+        printf("Song History:\n");
+        Stack temp; CreateEmptySt(&temp);
+        char val[NMax]; int i=1;
+        while (!IsEmptySt(songHistory))
         {
             char artist[NMax], album[NMax];
-            getArtist(queue.Tab[i % (IDX_MAX + 1)], artist, listAlbum);
-            getAlbum(queue.Tab[i % (IDX_MAX + 1)], album, listAlbum);
-            printf("%d. %s - %s - %s\n", i - queue.idxHead + 1, artist, album, queue.Tab[i]);
+            getArtist(InfoTop(songHistory), artist, listAlbum);
+            getAlbum(InfoTop(songHistory), album, listAlbum);
+            printf("%d. %s - %s - %s\n", i, artist, InfoTop(songHistory), album);
+            Pop(&songHistory, val);
+            Push(&temp, val);
+            i++;
+        }
+        while (!IsEmptySt(temp))
+        {
+            Pop(&temp, val);
+            Push(&songHistory, val);
         }
     }
-
 }
