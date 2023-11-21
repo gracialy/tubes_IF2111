@@ -5,9 +5,7 @@ void save(){
     getWord(1, path);
     char a[] = "src/save/", b[NMax];
     konkatString(b, a, path);
-    printf("belom\n");
     FILE* f = fopen(b, "w");
-    printf("udah\n");
 
     char savetemp[NMax];
     int artistCount = 0;
@@ -49,8 +47,10 @@ void save(){
             stringCopy(songTemp, songQueue.Tab[idx]);
             getArtist(songTemp, artistTemp, listAlbum); getAlbum(songTemp, albumTemp, listAlbum);
             fprintf(f, "%s;%s;%s\n", artistTemp, albumTemp, songTemp);
+            idx++;
         }
     }
+    
     // STACK
     if (IsEmptySt(songHistory)) fprintf(f, "0\n");
     else
