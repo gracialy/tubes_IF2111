@@ -42,7 +42,7 @@ void AddElementL(List* GE, char* playlistName){
         else{
             Capacity2 = (*GE).Capacity + 2;
         }
-        ElTypeL *temp = (ElTypeL*) realloc(GE->A, Capacity2 * sizeof(ElTypeL));
+        ElTypeL *temp = (ElTypeL*) realloc(GE->A, Capacity2 * sizeof(ElTypeL) + Capacity2 * 2 * sizeof(int));
         if (temp != NULL)
         {
             GE->A = temp;
