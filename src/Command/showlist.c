@@ -140,7 +140,6 @@ void showPlaylist(List listPlaylist){
         printf("Playlist tidak ditemukan\n");
         return;
     }
-    displayLinkedList(listPlaylist.A[id - 1]);
 }
 
 void getArtist(char *song, char* artist, Map listAlbum){
