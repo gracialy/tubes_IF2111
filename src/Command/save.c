@@ -68,7 +68,6 @@ void save(){
     fprintf(f, "%d\n", listPlaylist.Neff);
     for (int i = 0; i < listPlaylist.Neff; ++i)
     {
-        printf("%s\n", listPlaylist.A[i].Name);
         fprintf(f, "%d %s\n", NbElmt(listPlaylist.A[i]), listPlaylist.A[i].Name);
         if (listPlaylist.A[i].First != NilLL)
         {
