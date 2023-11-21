@@ -2,8 +2,8 @@
 
 void playSong (char* currentSong, char listArtis[100][50], Map listAlbum, Queue* songQueue, char* currentPlaylist){
     SelectSong(listArtis, listAlbum, currentSong);
-    stringCopy(currentPlaylist, "\0");
-    CreateQueue(songQueue);
+    stringCopy(currentPlaylist, "\0"); // tidak ada playlist yang sedang diputar
+    CreateQueue(songQueue); // tidak ada lagu dalam queue
 }
 
 void playPlaylist(char* currentSong, Queue* songQueue, List listPlaylist, Stack* songHistory, char* currentPlaylist){
