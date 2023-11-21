@@ -17,7 +17,7 @@ int main(){
     MakeList(&listPlaylist);
     CreateMapEmpty(&listAlbum);
     printf("\n");
-    // welcome();
+    welcome();
     printf("\n");
     printf(">> ");
     STARTWORD();
