@@ -2,8 +2,7 @@
 
 int banyakArtis;
 
-void konfigurasi(char listArtis[maxA][maxAN], Map* listAlbum, char* path, char* currentSong, 
-    Queue* songQueue, Stack* songHistory, List* listPlaylist){
+void konfigurasi(char* path){
     if (!isPathValid(path))
     {
         printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
@@ -24,15 +23,15 @@ void konfigurasi(char listArtis[maxA][maxAN], Map* listAlbum, char* path, char* 
         {
             ADVFILE(true);
             int banyakLagu = currentInt;
-            RenameSet(&getSet(*listAlbum, listAlbum->Count), currentLine.TabWord);
-            CreateEmpty(&getSet(*listAlbum, listAlbum->Count));
+            RenameSet(&getSet(listAlbum, listAlbum.Count), currentLine.TabWord);
+            CreateEmpty(&getSet(listAlbum, listAlbum.Count));
             for (int k = 0; k < banyakLagu; ++k) //ngebaca lagu
             {
                 ADVFILE(false);
-                InsertSet(&getSet(*listAlbum, listAlbum->Count), currentLine.TabWord);
+                InsertSet(&getSet(listAlbum, listAlbum.Count), currentLine.TabWord);
             }
-            listAlbum->Elements[listAlbum->Count].Value = listArtis[i];
-            listAlbum->Count ++;
+            listAlbum.Elements[listAlbum.Count].Value = listArtis[i];
+            listAlbum.Count ++;
         } 
     }
     if (!isEOF())
@@ -47,7 +46,7 @@ void konfigurasi(char listArtis[maxA][maxAN], Map* listAlbum, char* path, char* 
         {
             ADVFILE(false);
             getSong(song);
-            enqueue(songQueue, song);
+            enqueue(&songQueue, song);
         }
         ADVFILE(true);
         int banyakStack = currentInt;
@@ -55,7 +54,7 @@ void konfigurasi(char listArtis[maxA][maxAN], Map* listAlbum, char* path, char* 
         {
             ADVFILE(false);
             getSong(song);
-            Push(songHistory, song);
+            Push(&songHistory, song);
         }
         ADVFILE(true);
         int banyakPlaylist = currentInt;
@@ -63,13 +62,13 @@ void konfigurasi(char listArtis[maxA][maxAN], Map* listAlbum, char* path, char* 
         {
             ADVFILE(true);
             int banyakIsiPlaylist = currentInt;
-            AddElementL(listPlaylist, currentLine.TabWord);
-            CreateEmptyLL(&listPlaylist->A[i]);
+            AddElementL(&listPlaylist, currentLine.TabWord);
+            CreateEmptyLL(&listPlaylist.A[i]);
             for (int j = 0; j < banyakIsiPlaylist; ++j)
             {
                 ADVFILE(false);
                 getSong(song);
-                InsertLastLL(&listPlaylist->A[i], song);
+                InsertLastLL(&listPlaylist.A[i], song);
             }
         }
     }

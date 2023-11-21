@@ -29,21 +29,21 @@ int main(){
         getWord(0, command);
         if (isEqual(-1, "START"))
         {
-            konfigurasi(listArtis, &listAlbum, "konfigurasi.txt", currentSong, &songQueue, &songHistory, &listPlaylist);
+            konfigurasi("konfigurasi.txt");
             loaded = true;
         }
         else if (isEqual(0, "LOAD"))
         {
             getWord(1, command);
-            konfigurasi(listArtis, &listAlbum, command, currentSong, &songQueue, &songHistory, &listPlaylist);
-            if (isPathValid(command)) 
-            {
-                loaded = true;
-            }
-            else{
-                printf(">> ");
-            }
-
+            konfigurasi(command);
+            // if (isPathValid(command)) 
+            // {
+            //     loaded = true;
+            // }
+            // else{
+            //     printf(">> ");
+            // }
+            loaded = true;
         }
         else if (isEqual(0,"HELP"))
         {
@@ -100,7 +100,7 @@ int main(){
             else if (isEqual(1, "SWAP")) playlistSwap(&listPlaylist);
         }
         else if (isEqual(0, "STATUS")) status(songQueue, currentPlaylist, currentSong, listAlbum);
-        //else if (isEqual(0, "SAVE")) save(listArtis, &listAlbum, currentSong, &songQueue, &songHistory, &listPlaylist);
+        else if (isEqual(0, "SAVE")) save(listArtis, &listAlbum, currentSong, &songQueue, &songHistory, &listPlaylist);
 
 
         else if(isEqual(0, "SHOWPLAYLIST"))
