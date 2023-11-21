@@ -85,6 +85,6 @@ void insertFirstQueue(Queue* q, char* song){
     enqueue(q, song);
     for (int i = 0; i < n; ++i)
     {
-        enqueue(q, songTemp[i]);
+        enqueue(q, temp[i]);
     }
 }
