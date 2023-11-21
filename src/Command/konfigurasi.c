@@ -6,7 +6,7 @@ void konfigurasi(char* path){
     if (!isPathValid(path))
     {
         printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
-        return;
+        exit(0);
     }
     char a[] = "src/save/", b[NMax];
     konkatString(b, a, path);

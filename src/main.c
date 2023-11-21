@@ -36,13 +36,6 @@ int main(){
         {
             getWord(1, command);
             konfigurasi(command);
-            // if (isPathValid(command)) 
-            // {
-            //     loaded = true;
-            // }
-            // else{
-            //     printf(">> ");
-            // }
             loaded = true;
         }
         else if (isEqual(0,"HELP"))
@@ -65,16 +58,13 @@ int main(){
         {
             if (isEqual(1, "DEFAULT")) ListDefault(listArtis, listAlbum);
             else if (isEqual(1, "PLAYLIST")) showPlaylist(listPlaylist);
+            else printf("Command yang dimasukkan tidak valid\n");
         }
-        else if (isEqual(0, "HELP"))
-        {
-            helpAfterLoad();
-        }
-        
         else if (isEqual(0, "PLAY"))
         {
             if (isEqual(1, "SONG")) playSong(currentSong, listArtis, listAlbum, &songQueue, currentPlaylist);
             else if (isEqual(1, "PLAYLIST")) playPlaylist(currentSong, &songQueue, listPlaylist, &songHistory, currentPlaylist);
+            else printf("Command yang dimasukkan tidak valid\n");
         }
         else if (isEqual(0, "QUEUE"))
         {
@@ -83,11 +73,13 @@ int main(){
             else if (isEqual(1, "SWAP")) queueSwap(&songQueue);
             else if (isEqual(1, "REMOVE")) queueRemove(&songQueue);
             else if (isEqual(1, "CLEAR")) queueClear(&songQueue);
+            else printf("Command yang dimasukkan tidak valid\n");
         }
         else if (isEqual(0, "SONG"))
         {
             if (isEqual(1, "NEXT")) songNext(currentSong, &songQueue, &songHistory, listAlbum);
             else if (isEqual(1, "PREVIOUS")) songPrevious(currentSong, &songQueue, &songHistory, listAlbum);
+            else printf("Command yang dimasukkan tidak valid\n");
         }
         else if (isEqual(0, "PLAYLIST"))
         {
@@ -96,16 +88,20 @@ int main(){
             {
                 if (isEqual(2, "SONG")) InsertPlaylist(&listPlaylist, listArtis, listAlbum);
                 else if (isEqual(2, "ALBUM")) InsertAlbumToPlaylist(&listPlaylist, listArtis, listAlbum);
+                else printf("Command yang dimasukkan tidak valid\n");
             }
-            // else if (isEqual(1, "REMOVE")) playlistRemove(&listPlaylist);
+            else if (isEqual(1, "REMOVE")) playlistRemove(&listPlaylist);
             else if (isEqual(1, "DELETE")) playlistDelete(&listPlaylist);
             else if (isEqual(1, "SWAP")) playlistSwap(&listPlaylist);
+            else printf("Command yang dimasukkan tidak valid\n");
         }
         else if (isEqual(0, "STATUS")) status(songQueue, songHistory, currentPlaylist, currentSong, listAlbum);
         else if (isEqual(0, "SAVE")) save();
         else if (isEqual(0, "QUIT")) QuitAfterLoaded();
+        else if (isEqual(0, "HELP")) helpAfterLoad();
 
 
+        // rember to remove this
         else if(isEqual(0, "SHOWPLAYLIST"))
         {
             addressLL p = listPlaylist.A[0].First;
@@ -115,8 +111,9 @@ int main(){
                 p = p->next;
             }
         }
-    }
-    
 
+
+        else printf("Command yang dimasukkan tidak valid\n");
+    }
 }
 
