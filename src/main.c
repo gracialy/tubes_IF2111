@@ -100,7 +100,7 @@ int main(){
             else if (isEqual(1, "SWAP")) playlistSwap(&listPlaylist);
         }
         else if (isEqual(0, "STATUS")) status(songQueue, currentPlaylist, currentSong, listAlbum);
-        else if (isEqual(0, "SAVE")) save(listArtis, &listAlbum, currentSong, &songQueue, &songHistory, &listPlaylist);
+        else if (isEqual(0, "SAVE")) save();
 
 
         else if(isEqual(0, "SHOWPLAYLIST"))

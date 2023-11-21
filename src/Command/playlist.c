@@ -28,7 +28,7 @@ void InsertPlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum){
 void InsertAlbumToPlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum){
 	int idx;
 	printf("Daftar penyanyi :\n");
-    for (int i = 0; i < banyakArtis; ++i)
+    for (int i = 0; listArtis[i][0] != '\0'; ++i)
     {
         printf("  %d. %s\n", i + 1, listArtis[i]);
     }

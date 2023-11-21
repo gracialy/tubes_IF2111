@@ -18,7 +18,7 @@ void ADV() {
     /* Pita dimajukan satu karakter. ... */
     /* Algoritma */
     retval = fscanf(pita, "%c", &currentChar);
-    // if (!retval) 
+    // if (isEOF()) 
     // {
     //     fclose(pita);
     // }

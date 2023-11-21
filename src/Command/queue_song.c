@@ -7,7 +7,13 @@ void queueSong(Map listAlbum, char listArtis[maxA][maxAN], Queue* q){
 }
 
 void queuePlaylist(List listPlaylist, Queue* songQueue, char* currentAlbum){
-    showPlaylist(listPlaylist);
+    printf("Daftar playlist yang kamu miliki : \n");
+    if (listPlaylist.Neff == 0) 
+    {
+        printf("Kamu tidak memiliki playlist.\n");
+        return;
+    }
+    DisplayList(listPlaylist);
     printf("Masukkan ID playlist : ");
     ADVWORD();
     int idx = stringToInt(currentWord.TabWord) - 1;
