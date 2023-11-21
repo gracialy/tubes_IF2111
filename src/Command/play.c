@@ -25,6 +25,7 @@ void playPlaylist(char* currentSong, Queue* songQueue, List listPlaylist, Stack*
     CreateQueue(songQueue);
     CreateEmptySt(songHistory);
     addressLL p = listPlaylist.A[idx].First;
+    char *Playlist = listPlaylist.A[idx].Name;
     for (int i = 0; i < NbElmt(listPlaylist.A[idx]); ++i)
     {
         if (i == 0) stringCopy(currentSong, p->info);
@@ -35,4 +36,5 @@ void playPlaylist(char* currentSong, Queue* songQueue, List listPlaylist, Stack*
         }
         p = p->next;
     }
+    printf("Memutar playlist \"%s\"\n", Playlist);
 }
