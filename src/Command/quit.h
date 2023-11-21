@@ -3,9 +3,12 @@
 
 #include "save.h"
 
-void Quit(char listArtis[maxA][maxAN], Map* listAlbum, char* currentSong, 
-    Queue* songQueue, Stack* songHistory, List* listPlaylist);
-// I.S : Sembarang
+void QuitBeforeLoaded();
+// I.S : Not Loaded
+//F.S : Akan keluar dari program WayangWave
+
+void QuitAfterLoaded();
+// I.S : Loaded
 //F.S : Akan keluar dari program WayangWave
 
 #endif

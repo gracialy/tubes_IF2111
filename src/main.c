@@ -50,6 +50,7 @@ int main(){
             helpBeforeLoad();
             printf(">> ");
         }
+        else if (isEqual(0, "QUIT")) QuitBeforeLoaded();
         else
         {
             printf("Command yang dimasukkan tidak valid\n");
@@ -96,11 +97,13 @@ int main(){
                 if (isEqual(2, "SONG")) InsertPlaylist(&listPlaylist, listArtis, listAlbum);
                 else if (isEqual(2, "ALBUM")) InsertAlbumToPlaylist(&listPlaylist, listArtis, listAlbum);
             }
+            // else if (isEqual(1, "REMOVE")) playlistRemove(&listPlaylist);
             else if (isEqual(1, "DELETE")) playlistDelete(&listPlaylist);
             else if (isEqual(1, "SWAP")) playlistSwap(&listPlaylist);
         }
         else if (isEqual(0, "STATUS")) status(songQueue, currentPlaylist, currentSong, listAlbum);
         else if (isEqual(0, "SAVE")) save();
+        else if (isEqual(0, "QUIT")) QuitAfterLoaded();
 
 
         else if(isEqual(0, "SHOWPLAYLIST"))
