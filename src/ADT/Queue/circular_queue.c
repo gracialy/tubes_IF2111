@@ -59,7 +59,7 @@ void dequeue (Queue * Q, char* target) {
 void displayQueue (Queue Q) {
     int i = IDX_HEAD(Q), idx = 1;
     printf("[");
-    while (i != IDX_TAIL(Q)) {
+    while (i != IDX_TAIL(Q)+1) {
         printf("%d. %s\n", idx, Q.Tab[i]);
         idx ++;
         if (i == IDX_MAX) 
@@ -71,7 +71,7 @@ void displayQueue (Queue Q) {
             i++;
         }
     }
-    printf("%sQ]\n", Q.Tab[i]);
+    printf("%s]\n", Q.Tab[i]);
 }
 
 void insertFirstQueue(Queue* q, char* song){
