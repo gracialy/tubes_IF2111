@@ -7,7 +7,10 @@ void status(Queue queue, char* current_playlist, char* currentSong, Map listAlbu
     }
     else
     {
-        printf("Now Playing:\n%s\n", currentSong);
+        char artist[NMax], album[NMax];
+        getArtist(currentSong, artist, listAlbum);
+        getAlbum(currentSong, album, listAlbum);
+        printf("Now Playing:\n%s - %s - %s\n", artist, currentSong, album);
     }
     if (current_playlist[0] == '\0')
     {
@@ -22,7 +25,7 @@ void status(Queue queue, char* current_playlist, char* currentSong, Map listAlbu
             char artist[NMax], album[NMax];
             getArtist(queue.Tab[i % (IDX_MAX + 1)], artist, listAlbum);
             getAlbum(queue.Tab[i % (IDX_MAX + 1)], album, listAlbum);
-            printf("%d. %s - %s - %s\n", i - queue.idxHead + 1, artist, album, queue.Tab[i]);
+            printf("%d. %s - %s - %s\n", i - queue.idxHead + 1, artist,  queue.Tab[i], album);
         }
     }
     else
