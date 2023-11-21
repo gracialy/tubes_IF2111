@@ -1,6 +1,6 @@
 #include "queue_song.h"
 
-void queueSong(Map listAlbum, char listArtis[100][50], Queue* q){
+void queueSong(Map listAlbum, char listArtis[maxA][maxAN], Queue* q){
     char song[NMax];
     if (SelectSong(listArtis, listAlbum, song)) return;
     enqueue(q, song);

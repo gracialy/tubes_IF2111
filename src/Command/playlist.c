@@ -1,13 +1,13 @@
 #include "playlist.h"
 
-void CreatePlaylist(List* playlist, char listArtis[100][50], Map listAlbum){
+void CreatePlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum){
 	printf("Masukkan nama playlist yang ingin dibuat : ");
 	ADVWORD();
 	AddElementL(playlist, currentWord.TabWord);
 	printf("Playlist %s berhasil dibuat! \nSilakan masukkan lagu - lagu artis terkini kesayangan Anda!\n");
 }
 
-void InsertPlaylist(List* playlist, char listArtis[100][50], Map listAlbum){
+void InsertPlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum){
 	char song[NMax];
 	if (SelectSong(listArtis, listAlbum, song)) return;
 	printf("Daftar playlist pengguna : \n");
@@ -25,7 +25,7 @@ void InsertPlaylist(List* playlist, char listArtis[100][50], Map listAlbum){
 	InsertLastLL(&playlist->A[idx], song);
 }
 
-void InsertAlbumToPlaylist(List* playlist, char listArtis[100][50], Map listAlbum){
+void InsertAlbumToPlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum){
 	int idx;
 	printf("Daftar penyanyi :\n");
     for (int i = 0; i < banyakArtis; ++i)

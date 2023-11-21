@@ -12,6 +12,9 @@
 #define NEWLINE '\n'
 #define MARK ';'
 
+#define maxA 10
+#define maxAN 50
+
 typedef struct
 {
    char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */

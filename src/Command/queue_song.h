@@ -5,7 +5,7 @@
 #ifndef queue_song
 #define queue_song
 
-void queueSong(Map listAlbum, char listArtis[100][50], Queue* q);
+void queueSong(Map listAlbum, char listArtis[maxA][maxAN], Queue* q);
 
 void queuePlaylist(List listPlaylist, Queue* songQueue, char* currentAlbum);
 

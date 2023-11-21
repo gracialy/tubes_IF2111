@@ -8,7 +8,7 @@
 #ifndef play_song
 #define play_song
 
-void playSong (char* currentSong, char listArtis[100][50], Map listAlbum, Queue* songQueue, char* currentPlaylist);
+void playSong (char* currentSong, char listArtis[maxA][maxAN], Map listAlbum, Queue* songQueue, char* currentPlaylist);
 
 void playPlaylist(char* currentSong, Queue* songQueue, List listPlaylist, Stack* songHistory, char* currentPlaylist);
 

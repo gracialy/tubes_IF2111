@@ -1,6 +1,6 @@
 #include "showlist.h"
 
-void ListDefault(char listArtis[100][50], Map listAlbum){
+void ListDefault(char listArtis[maxA][maxAN], Map listAlbum){
     int idx;
 
     printf("Daftar penyanyi :\n");
@@ -60,7 +60,7 @@ void ListDefault(char listArtis[100][50], Map listAlbum){
     }
 }
 
-int SelectSong(char listArtis[100][50], Map listAlbum, char* target){
+int SelectSong(char listArtis[maxA][maxAN], Map listAlbum, char* target){
     int idx;
     char input[NMax];
     printf("Daftar penyanyi :\n");

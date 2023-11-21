@@ -23,7 +23,7 @@
 extern char currentSong[NMax];
 extern char currentPlaylist[NMax];
 
-extern char listArtis[100][50];
+extern char listArtis[maxA][maxAN];
 extern Map listAlbum;
 extern List listPlaylist;
 extern Queue songQueue;

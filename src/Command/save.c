@@ -1,6 +1,6 @@
 #include "save.h"
 
-void save(char listArtis[100][50], Map* listAlbum, char* currentSong, 
+void save(char listArtis[maxA][maxAN], Map* listAlbum, char* currentSong, 
     Queue* songQueue, Stack* songHistory, List* listPlaylist){
     closeFile();
     char path[NMax];

@@ -5,7 +5,7 @@
 #ifndef __SAVE__
 #define __SAVE__
 
-void save(char listArtis[100][50], Map* listAlbum, char* currentSong, 
+void save(char listArtis[maxA][maxAN], Map* listAlbum, char* currentSong, 
     Queue* songQueue, Stack* songHistory, List* listPlaylist);
 
 #endif

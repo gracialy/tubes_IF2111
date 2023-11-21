@@ -1,6 +1,6 @@
 #include "play.h"
 
-void playSong (char* currentSong, char listArtis[100][50], Map listAlbum, Queue* songQueue, char* currentPlaylist){
+void playSong (char* currentSong, char listArtis[maxA][maxAN], Map listAlbum, Queue* songQueue, char* currentPlaylist){
     SelectSong(listArtis, listAlbum, currentSong);
     stringCopy(currentPlaylist, "\0"); // tidak ada playlist yang sedang diputar
     CreateQueue(songQueue); // tidak ada lagu dalam queue

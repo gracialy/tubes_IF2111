@@ -9,11 +9,11 @@
 #ifndef PLAYLIST
 #define PLAYLIST
 
-void CreatePlaylist(List* playlist, char listArtis[100][50], Map listAlbum);
+void CreatePlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum);
 
-void InsertPlaylist(List* playlist, char listArtis[100][50], Map listAlbum);
+void InsertPlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum);
 
-void InsertAlbumToPlaylist(List* playlist, char listArtis[100][50], Map listAlbum);
+void InsertAlbumToPlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum);
 
 void playlistSwap(List* listPlaylist);
 

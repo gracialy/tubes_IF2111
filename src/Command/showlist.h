@@ -8,9 +8,9 @@
 #ifndef __list__
 #define __list__
 
-void ListDefault(char listArtis[100][50], Map listAlbum);
+void ListDefault(char listArtis[maxA][maxAN], Map listAlbum);
 
-int SelectSong(char listArtis[100][50], Map listAlbum, char* target);
+int SelectSong(char listArtis[maxA][maxAN], Map listAlbum, char* target);
 
 void showPlaylist(List listPlaylist);
 

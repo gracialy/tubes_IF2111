@@ -12,7 +12,7 @@
 
 extern int banyakArtis;
 
-void konfigurasi(char listArtis[100][50], Map* listAlbum, char* path, char* currentSong, 
+void konfigurasi(char listArtis[maxA][maxAN], Map* listAlbum, char* path, char* currentSong, 
     Queue* songQueue, Stack* songHistory, List* listPlaylist);
 
 boolean isPathValid(char* path);
