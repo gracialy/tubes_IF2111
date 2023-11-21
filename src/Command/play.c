@@ -22,19 +22,37 @@ void playPlaylist(char* currentSong, Queue* songQueue, List listPlaylist, Stack*
         printf("ID yang dimasukkan tidak ada\n");
         return;
     }
+    
     CreateQueue(songQueue);
     CreateEmptySt(songHistory);
-    addressLL p = listPlaylist.A[idx].First;
+    stringCopy(currentSong, "\0");
+
     char *Playlist = listPlaylist.A[idx].Name;
-    for (int i = 0; i < NbElmt(listPlaylist.A[idx]); ++i)
+    stringCopy(currentPlaylist, Playlist);
+
+    addressLL p = listPlaylist.A[idx].First;
+    p = p->next;
+
+    for (int i = 1; i < NbElmt(listPlaylist.A[idx]); ++i)
     {
-        if (i == 0) stringCopy(currentSong, p->info);
-        else
-        {
-            enqueue(songQueue, p->info);
-            Push(songHistory, p->info);
-        }
+        enqueue(songQueue, p->info);
         p = p->next;
     }
+
+    for (int i = 1; i < NbElmt(listPlaylist.A[idx]); ++i)
+    {
+        dequeue(songQueue, currentSong);
+        Push(songHistory, currentSong);
+    }
+
+    p = listPlaylist.A[idx].First;
+    stringCopy(currentSong, p->info);
+    p = p->next;
+    for (int i = 1; i < NbElmt(listPlaylist.A[idx]); ++i)
+    {
+        enqueue(songQueue, p->info);
+        p = p->next;
+    }
+
     printf("Memutar playlist \"%s\"\n", Playlist);
 }
