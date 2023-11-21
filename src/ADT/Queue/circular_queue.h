@@ -69,5 +69,6 @@ void displayQueue(Queue q);
 /* Jika Queue kosong : menulis [] */
 /* Note: Output mengandung newline */
 
+void insertFirstQueue(Queue* q, char* song);
 
 #endif

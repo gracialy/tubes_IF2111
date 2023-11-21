@@ -73,3 +73,18 @@ void displayQueue (Queue Q) {
     }
     printf("%sQ]\n", Q.Tab[i]);
 }
+
+void insertFirstQueue(Queue* q, char* song){
+    char temp[100][NMax], songTemp[NMax];
+    int n = 0;
+    while (!IsEmptyQ(*q))
+    {
+        dequeue(q, songTemp);
+        stringCopy(temp[n], songTemp);
+    }
+    enqueue(q, song);
+    for (int i = 0; i < n; ++i)
+    {
+        enqueue(q, songTemp[i]);
+    }
+}

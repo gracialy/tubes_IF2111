@@ -23,7 +23,7 @@ void songNext(char* currentSong, Queue* songQueue, Stack* songHistory, Map listA
 
 void songPrevious(char* currentSong, Queue* songQueue, Stack* songHistory, Map listAlbum){
     char artist[NMax];
-    enqueue(songQueue, currentSong);
+    insertFirstQueue(songQueue, currentSong);
     if (IsEmptyQ(*songQueue))
     {
         if (currentSong[0] == '\0')
@@ -38,6 +38,6 @@ void songPrevious(char* currentSong, Queue* songQueue, Stack* songHistory, Map l
     {
         Pop(songHistory, currentSong);
         getArtist(currentSong, artist, listAlbum);
-        printf("Memutar lagu selanjutnya %s oleh %s\n", currentSong, artist);
+        printf("Memutar lagu sebelumnya %s oleh %s\n", currentSong, artist);
     }
 }
