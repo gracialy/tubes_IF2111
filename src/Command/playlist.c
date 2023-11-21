@@ -138,7 +138,29 @@ void playlistSwap(List* listPlaylist){
     char idxstr[NMax], xstr[NMax], ystr[NMax];
     getWord(2, idxstr); getWord(3, xstr); getWord(4, ystr);
     int idx = stringToInt(idxstr), x = stringToInt(xstr), y = stringToInt(ystr);
+    if (idx > listPlaylist->Neff){
+        printf("Tidak ada playlist dengan ID %d\n", idx);
+        return;
+    }
+    if (x > NbElmt(listPlaylist->A[idx - 1]) || y > NbElmt(listPlaylist->A[idx - 1])){
+        if (x > NbElmt(listPlaylist->A[idx - 1]) && y > NbElmt(listPlaylist->A[idx - 1])){
+            printf("Tidak ada lagu dengan urutan %d atau %d di playlist %d\n", x, y, idx);
+            return;
+        }
+        else if(x > NbElmt(listPlaylist->A[idx - 1])){
+            printf("Tidak ada lagu dengan urutan %d di playlist %d\n", x, idx);
+            return;
+        }
+        else if (y > NbElmt(listPlaylist->A[idx - 1])){
+            printf("Tidak ada lagu dengan urutan %d di playlist %d\n", y, idx);
+            return;
+        }
+    }
+    // char namaplaylist[] = GetList(listPlaylist, idx-1);
+    // char lagu1[] = getLLidx(listPlaylist->A[idx - 1], x - 1);
+    // char lagu2[] = getLLidx(listPlaylist->A[idx - 1], y - 1);
     swapLinkedList(&listPlaylist->A[idx - 1], x, y);
+    // printf("Berhasil menukar lagu dengan nama \"%s\" dan \"%s\" di playlist %d\n", lagu1, lagu2, namaplaylist);
 }
 
 void playlistDelete(List* listPlaylist){
