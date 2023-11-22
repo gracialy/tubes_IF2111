@@ -17,7 +17,7 @@ void playPlaylist(char* currentSong, Queue* songQueue, List listPlaylist, Stack*
     printf("Masukkan ID playlist : ");
     ADVWORD();
     int idx = stringToInt(currentWord.TabWord) - 1;
-    if (idx < 0 || idx > listPlaylist.Neff)
+    if (idx < 0 || idx > listPlaylist.Neff-1)
     {
         printf("ID yang dimasukkan tidak ada\n");
         return;
@@ -25,7 +25,14 @@ void playPlaylist(char* currentSong, Queue* songQueue, List listPlaylist, Stack*
     
     CreateQueue(songQueue);
     CreateEmptySt(songHistory);
+    stringCopy(currentPlaylist, "\0");
     stringCopy(currentSong, "\0");
+
+    if (NbElmt(listPlaylist.A[idx])==0)
+    {
+        printf("Playlist yang dipilih kosong !\n");
+        return;
+    }
 
     char *Playlist = listPlaylist.A[idx].Name;
     stringCopy(currentPlaylist, Playlist);
