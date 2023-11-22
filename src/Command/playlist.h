@@ -9,19 +9,21 @@
 #ifndef PLAYLIST
 #define PLAYLIST
 
-void CreatePlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum);
+#include "../main.h"
+
+void CreatePlaylist();
 
 boolean isAllSpace(Word word);
 int effName(Word word);
 
-void InsertPlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum);
+void InsertPlaylist();
 
-void InsertAlbumToPlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum);
+void InsertAlbumToPlaylist();
 
-void playlistSwap(List* listPlaylist);
+void playlistSwap();
 
-void playlistRemove(List* listPlaylist);
+void playlistRemove();
 
-void playlistDelete(List* listPlaylist);
+void playlistDelete();
 
 #endif

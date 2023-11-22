@@ -1,6 +1,6 @@
 #include "playlist.h"
 
-void CreatePlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum){
+void CreatePlaylist(){
 	printf("Masukkan nama playlist yang ingin dibuat : ");
 	ADVWORD();
     while (effName(currentWord)<3 || isAllSpace(currentWord)){
@@ -9,7 +9,7 @@ void CreatePlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum){
         // ADVWORD();
         return;
     }
-	AddElementL(playlist, currentWord.TabWord);
+	AddElementL(&listPlaylist, currentWord.TabWord);
 	printf("Playlist %s berhasil dibuat! \nSilakan masukkan lagu - lagu artis terkini kesayangan Anda!\n", currentWord.TabWord);
 }
 
@@ -38,8 +38,8 @@ int effName(Word word){
     return count;
 }
 
-void InsertPlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum){
-	if (playlist->Neff == 0) 
+void InsertPlaylist(){
+	if (listPlaylist.Neff == 0) 
     {
         printf("Kamu tidak memiliki playlist.\n");
         return;
@@ -98,26 +98,26 @@ void InsertPlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum){
     stringCopy(song, getSet(listAlbum, idx).Elements[stringToInt(input) - 1]);
     
     printf("Daftar playlist pengguna : \n");
-	DisplayList(*playlist);
+	DisplayList(listPlaylist);
 	printf("Masukkan ID Playlist yang dipilih : ");
 	ADVWORD();
 	idx = stringToInt(currentWord.TabWord) - 1;
-	if (idx < 0 || idx >= playlist->Neff)
+	if (idx < 0 || idx >= listPlaylist.Neff)
 	{
 		printf("ID playlist tidak ada !\n");
 		return;
 	}
 
-	InsertLastLL(&playlist->A[idx], song);
+	InsertLastLL(&listPlaylist.A[idx], song);
     album[NMax]; char singer[NMax]; char playname[NMax];
-    getAlbum(song, album, listAlbum);
-    getArtist(song, singer, listAlbum);
-    stringCopy(playname, playlist->A[idx].Name);
+    getAlbum(song, album);
+    getArtist(song, singer);
+    stringCopy(playname, listPlaylist.A[idx].Name);
     printf("Lagu dengan judul \"%s\" pada album %s oleh penyanyi %s berhasil ditambahkan ke dalam playlist %s\n", song, album, singer, playname);
 }
 
-void InsertAlbumToPlaylist(List* playlist, char listArtis[maxA][maxAN], Map listAlbum){
-    if (playlist->Neff == 0) 
+void InsertAlbumToPlaylist(){
+    if (listPlaylist.Neff == 0) 
     {
         printf("Kamu tidak memiliki playlist.\n");
         return;
@@ -162,7 +162,7 @@ void InsertAlbumToPlaylist(List* playlist, char listArtis[maxA][maxAN], Map list
 	printf("Masukkan ID Playlist yang dipilih : ");
 	ADVWORD();
 	int idxPlaylist = stringToInt(currentWord.TabWord) - 1;
-    if (idx < 0 || idxPlaylist >= playlist->Neff)
+    if (idx < 0 || idxPlaylist >= listPlaylist.Neff)
 	{
 		printf("ID playlist tidak ada !\n");
 		return;
@@ -172,34 +172,34 @@ void InsertAlbumToPlaylist(List* playlist, char listArtis[maxA][maxAN], Map list
     while (!CompareString(getSet(listAlbum, idx).Name, album)) idx++;
     for (int i = 0; i < getSet(listAlbum, idx).Count; ++i)
     {
-        InsVLast(&playlist->A[idxPlaylist], getSet(listAlbum, idx).Elements[i]);
+        InsVLast(&listPlaylist.A[idxPlaylist], getSet(listAlbum, idx).Elements[i]);
     }
-    printf("Album dengan judul %s berhasil ditambahkan pada playlist pengguna \"%s\"\n", album, playlist->A[idxPlaylist].Name);
+    printf("Album dengan judul %s berhasil ditambahkan pada playlist pengguna \"%s\"\n", album, listPlaylist.A[idxPlaylist].Name);
 }
 
-void playlistRemove(List* listPlaylist){
+void playlistRemove(){
     char idstr[NMax], nstr[NMax];
     getWord(2, idstr); getWord(3, nstr);
     int id = stringToInt(idstr), n = stringToInt(nstr);
 
-    if (id > listPlaylist->Neff || id<=0){
+    if (id > listPlaylist.Neff || id<=0){
         printf("ID Playlist tidak valid\n");
         return;
     }
     char namaplaylist[NMax]; 
-    stringCopy(namaplaylist, listPlaylist->A[id-1].Name);
-    if ((n > NbElmt(listPlaylist->A[id - 1]) || n<=0)){
+    stringCopy(namaplaylist, listPlaylist.A[id-1].Name);
+    if ((n > NbElmt(listPlaylist.A[id - 1]) || n<=0)){
         printf("Urutan lagu tidak valid\n");
         return;
     }
     char namalagu[NMax]; char namapenyanyi[NMax];
-    stringCopy(namalagu, GetLL(listPlaylist->A[id - 1], n-1));
-    getArtist(namalagu, namapenyanyi, listAlbum);
+    stringCopy(namalagu, GetLL(listPlaylist.A[id - 1], n-1));
+    getArtist(namalagu, namapenyanyi);
     printf("Lagu \"%s\" oleh \"%s\" telah dihapus dari playlist \"%s\"\n", namalagu, namapenyanyi, namaplaylist);
     
 }
 
-void playlistSwap(List* listPlaylist){
+void playlistSwap(){
     char idxstr[NMax], xstr[NMax], ystr[NMax];
     getWord(2, idxstr); getWord(3, xstr); getWord(4, ystr);
     // if (CompareString(idxstr, " ") || CompareString(xstr, " ") || CompareString(ystr, " "))
@@ -209,45 +209,45 @@ void playlistSwap(List* listPlaylist){
     // }
 
     int idx = stringToInt(idxstr), x = stringToInt(xstr), y = stringToInt(ystr);
-    if (idx > listPlaylist->Neff || idx<=0){
+    if (idx > listPlaylist.Neff || idx<=0){
         printf("ID Playlist tidak valid\n");
         return;
     }
     char namaplay[NMax]; 
-    stringCopy(namaplay, listPlaylist->A[idx-1].Name);
-    if ((x > NbElmt(listPlaylist->A[idx - 1]) || x<=0) && (y > NbElmt(listPlaylist->A[idx - 1]) || y<=0)){
+    stringCopy(namaplay, listPlaylist.A[idx-1].Name);
+    if ((x > NbElmt(listPlaylist.A[idx - 1]) || x<=0) && (y > NbElmt(listPlaylist.A[idx - 1]) || y<=0)){
         printf("Urutan lagu tidak valid\n");
         return;
     }
 
     char lagu1[NMax];
-    stringCopy(lagu1, GetLL(listPlaylist->A[idx - 1], x-1));
+    stringCopy(lagu1, GetLL(listPlaylist.A[idx - 1], x-1));
     char lagu2[NMax]; 
-    stringCopy(lagu2, GetLL(listPlaylist->A[idx - 1], y-1));
-    swapLinkedList(&listPlaylist->A[idx - 1], x, y);
+    stringCopy(lagu2, GetLL(listPlaylist.A[idx - 1], y-1));
+    swapLinkedList(&listPlaylist.A[idx - 1], x, y);
     printf("Berhasil menukar lagu dengan nama \"%s\" dan \"%s\" di playlist %s\n", lagu1, lagu2, namaplay);
 }
 
-void playlistDelete(List* listPlaylist){
+void playlistDelete(){
     printf("Daftar playlist yang kamu miliki : \n");
-    if (listPlaylist->Neff == 0) 
+    if (listPlaylist.Neff == 0) 
     {
         printf("Kamu tidak memiliki playlist.\n");
         return;
     }
-    DisplayList(*listPlaylist);
+    DisplayList(listPlaylist);
     printf("Masukkan ID playlist yang dipilih : ");
     ADVWORD();
     char temp[NMax];
     getWord(0, temp);
     int idx = stringToInt(temp) - 1;
-    if (idx < 0 || idx >= listPlaylist->Neff)
+    if (idx < 0 || idx >= listPlaylist.Neff)
     {
         printf("Tidak ada playlist dengan ID %d dalam daftar playlist pengguna.\nSilakan coba lagi !\n", idx+1);
         return;
     }
     char namaplay[NMax]; 
-    stringCopy(namaplay, listPlaylist->A[idx].Name);
-    DeleteAt(listPlaylist, idx);
+    stringCopy(namaplay, listPlaylist.A[idx].Name);
+    DeleteAt(&listPlaylist, idx);
     printf("Playlist ID %d dengan judul \"%s\" berhasil dihapus\n", idx+1, namaplay);
 }

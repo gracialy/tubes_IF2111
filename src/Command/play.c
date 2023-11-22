@@ -1,12 +1,12 @@
 #include "play.h"
 
-void playSong (char* currentSong, char listArtis[maxA][maxAN], Map listAlbum, Queue* songQueue, char* currentPlaylist){
-    SelectSong(listArtis, listAlbum, currentSong);
+void playSong (){
+    SelectSong(currentSong);
     stringCopy(currentPlaylist, "\0"); // tidak ada playlist yang sedang diputar
-    CreateQueue(songQueue); // tidak ada lagu dalam queue
+    CreateQueue(&songQueue); // tidak ada lagu dalam queue
 }
 
-void playPlaylist(char* currentSong, Queue* songQueue, List listPlaylist, Stack* songHistory, char* currentPlaylist){
+void playPlaylist(){
     printf("Daftar playlist yang kamu miliki : \n");
     if (listPlaylist.Neff == 0) 
     {
@@ -23,8 +23,8 @@ void playPlaylist(char* currentSong, Queue* songQueue, List listPlaylist, Stack*
         return;
     }
     
-    CreateQueue(songQueue);
-    CreateEmptySt(songHistory);
+    CreateQueue(&songQueue);
+    CreateEmptySt(&songHistory);
     stringCopy(currentPlaylist, "\0");
     stringCopy(currentSong, "\0");
 
@@ -42,14 +42,14 @@ void playPlaylist(char* currentSong, Queue* songQueue, List listPlaylist, Stack*
 
     for (int i = 1; i < NbElmt(listPlaylist.A[idx]); ++i)
     {
-        enqueue(songQueue, p->info);
+        enqueue(&songQueue, p->info);
         p = p->next;
     }
 
     for (int i = 1; i < NbElmt(listPlaylist.A[idx]); ++i)
     {
-        dequeue(songQueue, currentSong);
-        Push(songHistory, currentSong);
+        dequeue(&songQueue, currentSong);
+        Push(&songHistory, currentSong);
     }
 
     p = listPlaylist.A[idx].First;
@@ -57,7 +57,7 @@ void playPlaylist(char* currentSong, Queue* songQueue, List listPlaylist, Stack*
     p = p->next;
     for (int i = 1; i < NbElmt(listPlaylist.A[idx]); ++i)
     {
-        enqueue(songQueue, p->info);
+        enqueue(&songQueue, p->info);
         p = p->next;
     }
 

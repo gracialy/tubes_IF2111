@@ -4,15 +4,16 @@
 
 #ifndef queue_song
 #define queue_song
+#include "../main.h"
 
-void queueSong(Map listAlbum, char listArtis[maxA][maxAN], Queue* q);
+void queueSong();
 
-void queuePlaylist(List listPlaylist, Queue* songQueue, char* currentAlbum);
+void queuePlaylist();
 
-void queueSwap(Queue* songQueue);
+void queueSwap();
 
-void queueRemove(Queue* songQueue);
+void queueRemove();
 
-void queueClear(Queue* songQueue);
+void queueClear();
 
 #endif

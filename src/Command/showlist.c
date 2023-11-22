@@ -1,6 +1,6 @@
 #include "showlist.h"
 
-void ListDefault(char listArtis[maxA][maxAN], Map listAlbum){
+void ListDefault(){
     int idx;
 
     printf("Daftar penyanyi :\n");
@@ -60,7 +60,7 @@ void ListDefault(char listArtis[maxA][maxAN], Map listAlbum){
     }
 }
 
-int SelectSong(char listArtis[maxA][maxAN], Map listAlbum, char* target){
+int SelectSong(char* target){
     int idx;
     char input[NMax];
     printf("Daftar penyanyi :\n");
@@ -117,7 +117,7 @@ int SelectSong(char listArtis[maxA][maxAN], Map listAlbum, char* target){
     return 0;
 }
 
-void showPlaylist(List listPlaylist){
+void showPlaylist(){
     printf("Daftar playlist yang kamu miliki : \n");
     if (listPlaylist.Neff == 0) 
     {
@@ -141,7 +141,7 @@ void showPlaylist(List listPlaylist){
     displayLinkedList(listPlaylist.A[id - 1]);
 }
 
-void getArtist(char *song, char* artist, Map listAlbum){
+void getArtist(char *song, char* artist){
     for (int i = 0; i < listAlbum.Count; ++i)
     {
         for (int j = 0; j < getSet(listAlbum, i).Count; ++j)
@@ -155,7 +155,7 @@ void getArtist(char *song, char* artist, Map listAlbum){
     }
 }
 
-void getAlbum(char *song, char* album, Map listAlbum){
+void getAlbum(char *song, char* album){
     for (int i = 0; i < listAlbum.Count; ++i)
     {
         for (int j = 0; j < getSet(listAlbum, i).Count; ++j)

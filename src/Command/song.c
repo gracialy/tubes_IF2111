@@ -1,43 +1,43 @@
 #include "song.h"
 
-void songNext(char* currentSong, Queue* songQueue, Stack* songHistory, Map listAlbum){
+void songNext(){
     char artist[NMax];
-    Push(songHistory, currentSong);
-    if (IsEmptyQ(*songQueue))
+    Push(&songHistory, currentSong);
+    if (IsEmptyQ(songQueue))
     {
         if (currentSong[0] == '\0')
         {
             printf("Tidak ada lagu yang diputar!\n");
             return;
         }
-        getArtist(currentSong, artist, listAlbum);
+        getArtist(currentSong, artist);
         printf("Queue kosong, memutar kembali lagu \n%s oleh %s\n", currentSong, artist);
     }
     else
     {
-        dequeue(songQueue, currentSong);
-        getArtist(currentSong, artist, listAlbum);
+        dequeue(&songQueue, currentSong);
+        getArtist(currentSong, artist);
         printf("Memutar lagu selanjutnya %s oleh %s\n", currentSong, artist);
     }
 }
 
-void songPrevious(char* currentSong, Queue* songQueue, Stack* songHistory, Map listAlbum){
+void songPrevious(){
     char artist[NMax];
-    insertFirstQueue(songQueue, currentSong);
-    if (IsEmptyQ(*songQueue))
+    insertFirstQueue(&songQueue, currentSong);
+    if (IsEmptyQ(songQueue))
     {
         if (currentSong[0] == '\0')
         {
             printf("Tidak ada lagu yang diputar!\n");
             return;
         }
-        getArtist(currentSong, artist, listAlbum);
+        getArtist(currentSong, artist);
         printf("Queue kosong, memutar kembali lagu \n%s oleh %s\n", currentSong, artist);
     }
     else
     {
-        Pop(songHistory, currentSong);
-        getArtist(currentSong, artist, listAlbum);
+        Pop(&songHistory, currentSong);
+        getArtist(currentSong, artist);
         printf("Memutar lagu sebelumnya %s oleh %s\n", currentSong, artist);
     }
 }

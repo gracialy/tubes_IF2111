@@ -6,8 +6,10 @@
 #ifndef _SONG_
 #define _SONG_
 
-void songNext(char* currentSong, Queue* songQueue, Stack* songHistory, Map listAlbum);
+#include "../main.h"
 
-void songPrevious(char* currentSong, Queue* songQueue, Stack* songHistory, Map listAlbum);
+void songNext();
+
+void songPrevious();
 
 #endif

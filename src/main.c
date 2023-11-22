@@ -56,63 +56,49 @@ int main(){
         ADVWORD();
         if (isEqual(0, "LIST"))
         {
-            if (isEqual(1, "DEFAULT")) ListDefault(listArtis, listAlbum);
-            else if (isEqual(1, "PLAYLIST")) showPlaylist(listPlaylist);
+            if (isEqual(1, "DEFAULT")) ListDefault();
+            else if (isEqual(1, "PLAYLIST")) showPlaylist();
             else printf("Command yang dimasukkan tidak valid\n");
         }
         else if (isEqual(0, "PLAY"))
         {
-            if (isEqual(1, "SONG")) playSong(currentSong, listArtis, listAlbum, &songQueue, currentPlaylist);
-            else if (isEqual(1, "PLAYLIST")) playPlaylist(currentSong, &songQueue, listPlaylist, &songHistory, currentPlaylist);
+            if (isEqual(1, "SONG")) playSong();
+            else if (isEqual(1, "PLAYLIST")) playPlaylist();
             else printf("Command yang dimasukkan tidak valid\n");
         }
         else if (isEqual(0, "QUEUE"))
         {
-            if (isEqual(1, "SONG")) queueSong(listAlbum, listArtis, &songQueue);
-            else if (isEqual(1, "PLAYLIST")) queuePlaylist(listPlaylist, &songQueue, currentAlbum);
-            else if (isEqual(1, "SWAP")) queueSwap(&songQueue);
-            else if (isEqual(1, "REMOVE")) queueRemove(&songQueue);
-            else if (isEqual(1, "CLEAR")) queueClear(&songQueue);
+            if (isEqual(1, "SONG")) queueSong();
+            else if (isEqual(1, "PLAYLIST")) queuePlaylist();
+            else if (isEqual(1, "SWAP")) queueSwap();
+            else if (isEqual(1, "REMOVE")) queueRemove();
+            else if (isEqual(1, "CLEAR")) queueClear();
             else printf("Command yang dimasukkan tidak valid\n");
         }
         else if (isEqual(0, "SONG"))
         {
-            if (isEqual(1, "NEXT")) songNext(currentSong, &songQueue, &songHistory, listAlbum);
-            else if (isEqual(1, "PREVIOUS")) songPrevious(currentSong, &songQueue, &songHistory, listAlbum);
+            if (isEqual(1, "NEXT")) songNext();
+            else if (isEqual(1, "PREVIOUS")) songPrevious();
             else printf("Command yang dimasukkan tidak valid\n");
         }
         else if (isEqual(0, "PLAYLIST"))
         {
-            if (isEqual(1, "CREATE")) CreatePlaylist(&listPlaylist, listArtis, listAlbum);
+            if (isEqual(1, "CREATE")) CreatePlaylist();
             else if (isEqual(1, "ADD"))
             {
-                if (isEqual(2, "SONG")) InsertPlaylist(&listPlaylist, listArtis, listAlbum);
-                else if (isEqual(2, "ALBUM")) InsertAlbumToPlaylist(&listPlaylist, listArtis, listAlbum);
+                if (isEqual(2, "SONG")) InsertPlaylist();
+                else if (isEqual(2, "ALBUM")) InsertAlbumToPlaylist();
                 else printf("Command yang dimasukkan tidak valid\n");
             }
-            else if (isEqual(1, "REMOVE")) playlistRemove(&listPlaylist);
-            else if (isEqual(1, "DELETE")) playlistDelete(&listPlaylist);
-            else if (isEqual(1, "SWAP")) playlistSwap(&listPlaylist);
+            else if (isEqual(1, "REMOVE")) playlistRemove();
+            else if (isEqual(1, "DELETE")) playlistDelete();
+            else if (isEqual(1, "SWAP")) playlistSwap();
             else printf("Command yang dimasukkan tidak valid\n");
         }
-        else if (isEqual(0, "STATUS")) status(songQueue, songHistory, currentPlaylist, currentSong, listAlbum);
+        else if (isEqual(0, "STATUS")) status();
         else if (isEqual(0, "SAVE")) save();
         else if (isEqual(0, "QUIT")) QuitAfterLoaded();
         else if (isEqual(0, "HELP")) helpAfterLoad();
-
-
-        // rember to remove this
-        else if(isEqual(0, "SHOWPLAYLIST"))
-        {
-            addressLL p = listPlaylist.A[0].First;
-            for (int i = 0; i < NbElmt(listPlaylist.A[0]); ++i)
-            {
-                printf("%s\n", p->info);
-                p = p->next;
-            }
-        }
-
-
         else printf("Command yang dimasukkan tidak valid\n");
     }
 }

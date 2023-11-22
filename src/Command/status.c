@@ -1,9 +1,9 @@
 #include "status.h"
 
-void status(Queue queue, Stack songHistory, char* current_playlist, char* currentSong, Map listAlbum){
+void status(){
     // current playlist
-    if (current_playlist[0] != '\0'){
-        printf("Current Playlist: %s\n", current_playlist);
+    if (currentPlaylist[0] != '\0'){
+        printf("Current Playlist: %s\n", currentPlaylist);
     }
 
     // now playing
@@ -14,24 +14,24 @@ void status(Queue queue, Stack songHistory, char* current_playlist, char* curren
     else
     {
         char artist[NMax], album[NMax];
-        getArtist(currentSong, artist, listAlbum);
-        getAlbum(currentSong, album, listAlbum);
+        getArtist(currentSong, artist);
+        getAlbum(currentSong, album);
         printf("Now Playing:\n%s - %s - %s\n", artist, currentSong, album);
     }
 
     printf("Queue:\n");
-    if (IsEmptyQ(queue)) 
+    if (IsEmptyQ(songQueue)) 
     {
         printf("Your queue is empty.\n");
         
     }
     else{
-        for (int i = queue.idxHead; i <= queue.idxTail; ++i)
+        for (int i = songQueue.idxHead; i <= songQueue.idxTail; ++i)
         {
             char artist[NMax], album[NMax];
-            getArtist(queue.Tab[i % (IDX_MAX + 1)], artist, listAlbum);
-            getAlbum(queue.Tab[i % (IDX_MAX + 1)], album, listAlbum);
-            printf("%d. %s - %s - %s\n", i - queue.idxHead + 1, artist,  queue.Tab[i], album);
+            getArtist(songQueue.Tab[i % (IDX_MAX + 1)], artist);
+            getAlbum(songQueue.Tab[i % (IDX_MAX + 1)], album);
+            printf("%d. %s - %s - %s\n", i - songQueue.idxHead + 1, artist,  songQueue.Tab[i], album);
         }
     }
     
@@ -48,8 +48,8 @@ void status(Queue queue, Stack songHistory, char* current_playlist, char* curren
         while (!IsEmptySt(songHistory))
         {
             char artist[NMax], album[NMax];
-            getArtist(InfoTop(songHistory), artist, listAlbum);
-            getAlbum(InfoTop(songHistory), album, listAlbum);
+            getArtist(InfoTop(songHistory), artist);
+            getAlbum(InfoTop(songHistory), album);
             printf("%d. %s - %s - %s\n", i, artist, InfoTop(songHistory), album);
             Pop(&songHistory, val);
             Push(&temp, val);

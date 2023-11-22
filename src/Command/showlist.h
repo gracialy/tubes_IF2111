@@ -7,15 +7,16 @@
 
 #ifndef __list__
 #define __list__
+#include "../main.h"
 
-void ListDefault(char listArtis[maxA][maxAN], Map listAlbum);
+void ListDefault();
 
-int SelectSong(char listArtis[maxA][maxAN], Map listAlbum, char* target);
+int SelectSong(char* target);
 
-void showPlaylist(List listPlaylist);
+void showPlaylist();
 
-void getArtist(char *song, char* artist, Map listAlbum);
+void getArtist(char *song, char* artist);
 
-void getAlbum(char *song, char* album, Map listAlbum);
+void getAlbum(char *song, char* album);
 
 #endif

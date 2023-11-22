@@ -5,7 +5,9 @@
 #ifndef __status__
 #define __status__
 
-void status(Queue queue, Stack songHistory, char* current_playlist, char* currentSong, Map listAlbum);
+#include "../main.h"
+
+void status();
 /* Menerima daftar lagu dalam queue dalam argumen queue, dan nama playlist yang diputar
    dalam argumen current_playlist. Bila queue sekarang bukan dari playlist maka argumen
    current_playlist yang dimasukkan adalah string kosong ("") 
