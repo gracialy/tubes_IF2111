@@ -72,6 +72,7 @@ void konfigurasi(char* path){
             }
         }
     }
+    while (!isEOF()) ADVFILE(false);
     printf("File konfigurasi berhasil dibaca. WayangWave berhasil dijalankan!\n");
 }
 

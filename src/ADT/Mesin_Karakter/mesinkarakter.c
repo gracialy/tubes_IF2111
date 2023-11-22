@@ -29,5 +29,6 @@ boolean isEOF(){
 }
 
 void closeFile(){
+    printf("%c\n", currentChar);
     fclose(pita);
 }

@@ -2,10 +2,13 @@
 
 void save(){
     char path[NMax];
+    FILE* f;
     getWord(1, path);
     char a[] = "src/save/", b[NMax];
     konkatString(b, a, path);
-    FILE* f = fopen(b, "w");
+    printf("%d\n", isEOF());
+    f = fopen(b, "w");
+    printf("keload\n");
 
     char savetemp[NMax];
     int artistCount = 0;

@@ -35,19 +35,12 @@ int GetCapacity(List GE){
 void AddElementL(List* GE, char* playlistName){
     if ((GE->Neff)==(GE->Capacity))
     {
-        int Capacity2;
-        if ((*GE).Capacity != 0){
-            Capacity2 = 2*((*GE).Capacity);
-        }
-        else{
-            Capacity2 = (*GE).Capacity + 2;
-        }
-        ElTypeL *temp = (ElTypeL*) realloc(GE->A, Capacity2 * sizeof(ElTypeL) + Capacity2 * 2 * sizeof(int));
+        int Capacity2 = 2*((*GE).Capacity);
+        ElTypeL *temp = (ElTypeL*) realloc(GE->A, Capacity2 * sizeof(ElTypeL));
         if (temp != NULL)
         {
             GE->A = temp;
-            GE->Capacity = Capacity2;
-            CreateEmptyLL(temp);
+            GE->Capacity = Capacity2;   
         }
     }
     stringCopy(GE->A[GE->Neff].Name, playlistName);
