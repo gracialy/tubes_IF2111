@@ -39,28 +39,18 @@ void queueSwap(Queue* songQueue){
     getWord(2, xstr); getWord(3, ystr);
 
     // queue number is not completed
-    if (CompareString(xstr, " ") || CompareString(ystr, " "))
-    {
-        printf("Command yang dimasukkan tidak valid\n");
-        return;
-    }
+    // if (CompareString(xstr, " ") || CompareString(ystr, " "))
+    // {
+    //     printf("Command yang dimasukkan tidak valid\n");
+    //     return;
+    // }
 
     int x = stringToInt(xstr), y = stringToInt(ystr);
     
     // queue number is not valid
-    if ((x > LengthQ(*songQueue) || x<=0) && (y > LengthQ(*songQueue) || y<=0))
+    if ((x > LengthQ(*songQueue) || x<=0) || (y > LengthQ(*songQueue) || y<=0))
     {
-        printf("Lagu dengan urutan ke %d dan %d tidak terdapat dalam queue\n", x, y);
-        return;
-    }
-    else if (x > LengthQ(*songQueue) || x<=0)
-    {
-        printf("Lagu dengan urutan ke %d tidak terdapat dalam queue\n", x);
-        return;
-    }
-    else if (y > LengthQ(*songQueue) || y<=0)
-    {
-        printf("Lagu dengan urutan ke %d tidak terdapat dalam queue\n", y);
+        printf("Urutan lagu tidak valid\n", x, y);
         return;
     }
 
@@ -77,16 +67,16 @@ void queueRemove(Queue* songQueue){
     char idxstr[NMax];
     getWord(2, idxstr);
     // queue number is not completed
-    if (CompareString(idxstr, " "))
-    {
-        printf("Command yang dimasukkan tidak valid\n");
-        return;
-    }
+    // if (CompareString(idxstr, " "))
+    // {
+    //     printf("Command yang dimasukkan tidak valid\n");
+    //     return;
+    // }
 
     int idx = stringToInt(idxstr);
     if (idx > LengthQ(*songQueue) || idx<=0)
     {
-        printf("Lagu dengan urutan ke %d tidak terdapat dalam queue\n", idx);
+        printf("Urutan lagu tidak valid\n");
         return;
     }
 

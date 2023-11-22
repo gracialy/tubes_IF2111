@@ -139,4 +139,6 @@ void displayLinkedList(LinkedList L);
 
 void swapLinkedList(LinkedList* L, int x, int y);
 
+char* GetLL(LinkedList L, int idx);
+
 #endif

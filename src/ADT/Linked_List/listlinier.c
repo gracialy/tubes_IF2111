@@ -237,3 +237,15 @@ void swapLinkedList(LinkedList* L, int x, int y){
     }
 
 }
+
+char* GetLL(LinkedList L, int idx){
+    int i = 1;
+    addressLL P = First(L);
+    while (i<=idx)
+    {
+        i++;
+        P = P->next;
+    }
+    return P->info;
+}
+// idx pasti ada di L

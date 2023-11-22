@@ -76,7 +76,7 @@ int SelectSong(char listArtis[maxA][maxAN], Map listAlbum, char* target){
         printf("Penyanyi tidak ditemukan !\n");
         return 1;
     }
-    Word Singer = currentWord;
+    // Word Singer = currentWord; // Singer.TabWord
     
     idx = 1;
     for (int i = 0; i < listAlbum.Count; ++i)
@@ -114,8 +114,6 @@ int SelectSong(char listArtis[maxA][maxAN], Map listAlbum, char* target){
         return 1;
     }
     stringCopy(target, getSet(listAlbum, idx).Elements[stringToInt(input) - 1]);
-    char *Song = getSet(listAlbum, idx).Elements[stringToInt(input) - 1];
-    printf("Memutar lagu \"%s\" oleh \"%s\"\n", Song, Singer.TabWord);
     return 0;
 }
 
