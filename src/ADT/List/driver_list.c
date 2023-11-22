@@ -2,7 +2,6 @@
 #include "list.h"
 
 int main() {
-    
     List myList = MakeList();
 
    

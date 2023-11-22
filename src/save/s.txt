@@ -35,8 +35,7 @@ Arctic Monkeys;AM;Arabella
 Arctic Monkeys;Favourite Worst Nightmare;505
 BLACKPINK;BORN PINK;Pink Venom
 3
-1 BLACKPINK My Top Three
-Arctic Monkeys;AM;Arabella
+0 BLACKPINK My Top Three
 5 Arctic Monkeys My Top 5
 Arctic Monkeys;AM;R U Mine?
 Arctic Monkeys;AM;Do I Wanna Know?

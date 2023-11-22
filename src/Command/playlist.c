@@ -172,7 +172,8 @@ void InsertAlbumToPlaylist(){
     while (!CompareString(getSet(listAlbum, idx).Name, album)) idx++;
     for (int i = 0; i < getSet(listAlbum, idx).Count; ++i)
     {
-        InsVLast(&listPlaylist.A[idxPlaylist], getSet(listAlbum, idx).Elements[i]);
+
+        InsertLastLL(&listPlaylist.A[idxPlaylist], getSet(listAlbum, idx).Elements[i]);
     }
     printf("Album dengan judul %s berhasil ditambahkan pada playlist pengguna \"%s\"\n", album, listPlaylist.A[idxPlaylist].Name);
 }

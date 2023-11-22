@@ -29,7 +29,7 @@ List MakeList();
  * I.S. ArrayDin terdefinisi
  * F.S. array->A terdealokasi
  */
-void DeallocateArrayDin(List *array);
+void DeallocateArrayDIN(List *array);
 
 /**
  * Fungsi untuk mengetahui apakah suatu array kosong.
@@ -41,7 +41,7 @@ boolean IsEmptyL(List array);
  * Fungsi untuk mendapatkan banyaknya elemen efektif array, 0 jika tabel kosong.
  * Prekondisi: array terdefinisi
  */
-int LengthL(List array);
+int lengthL(List array);
 
 /**
  * Mengembalikan elemen array L yang ke-I (indeks lojik).
@@ -57,11 +57,6 @@ int GetCapacity(List array);
 
 void AddElementL(List* GE, char* playlistName);
 
-/**
- * Fungsi untuk menambahkan elemen baru di index ke-i
- * Prekondisi: array terdefinisi, i di antara 0..Length(array).
- */
-void InsertAt(List *array, ElTypeL el, IdxTypeL i);
 
 /**
  * Fungsi untuk menghapus elemen di index ke-i ArrayDin

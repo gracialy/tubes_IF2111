@@ -46,28 +46,13 @@ void AddElementL(List* GE, char* playlistName){
         if (temp != NULL)
         {
             GE->A = temp;
-            GE->Capacity = Capacity2;   
+            GE->Capacity = Capacity2;
             CreateEmptyLL(temp);
         }
     }
     stringCopy(GE->A[GE->Neff].Name, playlistName);
+    GE->A[GE->Neff].First = NilLL;
     GE->Neff ++;
-}
-
-void InsertAt(List *GE, ElTypeL el, IdxTypeL i){
-    if ((GE->Neff)==(GE->Capacity)){
-        int Capacity2 = 2*((*GE).Capacity);
-        ElTypeL *temp = (ElTypeL*) realloc(GE->A, Capacity2 * sizeof(ElTypeL));
-        if (temp != NULL){
-            GE->A = temp;
-            GE->Capacity = Capacity2;   
-        }
-    }
-    for (int j = (*GE).Neff; j>i; j--){
-        (*GE).A[j] = (*GE).A[j-1];
-    }
-    (*GE).A[i] = el;
-    (*GE).Neff ++;
 }
 
 void DeleteAt(List *GE, IdxTypeL i){
