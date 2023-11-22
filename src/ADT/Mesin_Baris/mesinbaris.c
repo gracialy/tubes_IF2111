@@ -63,6 +63,10 @@ void CopyLine(boolean readDigit)
         currentInt = stringToInt(currentLine.TabWord);
         currentLine.Length = 0;
     }
+    else
+    {
+        currentInt = -999;
+    }
     while(currentChar == BLANK) ADV();
 
     while(currentChar != NEWLINE && !isEOF())
