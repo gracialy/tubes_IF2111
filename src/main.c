@@ -8,6 +8,7 @@ Map listAlbum;
 List listPlaylist;
 Queue songQueue;
 Stack songHistory;
+User listUser;
 
 int main(){
     char command[NMax];
@@ -23,7 +24,8 @@ int main(){
     STARTWORD();
 
     boolean loaded = false;
-    while (!loaded)
+    boolean loggedIn = false;
+    while (!loaded && !loggedIn)
     {
         ADVWORD();
         getWord(0, command);
@@ -44,14 +46,32 @@ int main(){
             printf(">> ");
         }
         else if (isEqual(0, "QUIT")) QuitBeforeLoaded();
-        else if (isEqual(0, "SAVE")) save();
+        else if (isEqual(0, "LOGIN"))
+        {
+            login();
+            loggedIn = true;
+        }
         else
         {
             printf("Command yang dimasukkan tidak valid\n");
             printf(">> ");
         }
     }
-    while (loaded)
+while (loaded && !loggedIn)
+    {
+        printf(">> ");
+        ADVWORD();
+        if (isEqual(0, "LOGIN"))
+        {
+            login();
+            loggedIn = true;
+        }
+        else if (isEqual(0, "HELP")); //
+        else if (isEqual(0, "QUIT")) QuitAfterLoaded();
+        else if (isEqual(0, "SAVE")) save();
+        else printf("Command yang dimasukkan tidak valid\n");
+    }
+    while (loggedIn)
     {
         printf(">> ");
         ADVWORD();
@@ -101,6 +121,11 @@ int main(){
         else if (isEqual(0, "QUIT")) QuitAfterLoaded();
         else if (isEqual(0, "HELP")) helpAfterLoad();
         else if (isEqual(0, "ENHANCE")) enhance();
+        else if (isEqual(0, "LOGOUT"))
+        {
+            logout();
+            loggedIn = false;
+        }
         else printf("Command yang dimasukkan tidak valid\n");
     }
 }

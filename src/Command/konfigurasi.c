@@ -34,41 +34,51 @@ void konfigurasi(char* path){
             listAlbum.Count ++;
         } 
     }
+    ADVFILE(true);
+    int banyakUser = currentInt;
+    for (int i = 0; i < banyakUser; ++i) //ngebaca nama user
+    {
+        ADVFILE(false);
+        stringCopy(listUser[i].username, currentLine.TabWord);
+    }
     if (!isEOF())
     {
-        char song[NMax];
-        ADVFILE(false);
-        getSong(song);
-        stringCopy(currentSong, song);
-        ADVFILE(true);
-        int banyakQueue = currentInt;
-        for (int i = 0; i < banyakQueue; ++i)
-        {
+        for (int i = 0; i < banyakUser; ++i) //ngebaca data user
+        {    
+            char song[NMax];
             ADVFILE(false);
             getSong(song);
-            enqueue(&songQueue, song);
-        }
-        ADVFILE(true);
-        int banyakStack = currentInt;
-        for (int i = 0; i < banyakStack; ++i)
-        {
-            ADVFILE(false);
-            getSong(song);
-            Push(&songHistory, song);
-        }
-        ADVFILE(true);
-        int banyakPlaylist = currentInt;
-        for (int i = 0; i < banyakPlaylist; ++i)
-        {
+            stringCopy(currentSong, song);
             ADVFILE(true);
-            int banyakIsiPlaylist = currentInt;
-            AddElementL(&listPlaylist, currentLine.TabWord);
-            CreateEmptyLL(&listPlaylist.A[i]);
-            for (int j = 0; j < banyakIsiPlaylist; ++j)
+            int banyakQueue = currentInt;
+            for (int i = 0; i < banyakQueue; ++i)
             {
                 ADVFILE(false);
                 getSong(song);
-                InsertLastLL(&listPlaylist.A[i], song);
+                enqueue(&songQueue, song);
+            }
+            ADVFILE(true);
+            int banyakStack = currentInt;
+            for (int i = 0; i < banyakStack; ++i)
+            {
+                ADVFILE(false);
+                getSong(song);
+                Push(&songHistory, song);
+            }
+            ADVFILE(true);
+            int banyakPlaylist = currentInt;
+            for (int i = 0; i < banyakPlaylist; ++i)
+            {
+                ADVFILE(true);
+                int banyakIsiPlaylist = currentInt;
+                AddElementL(&listPlaylist, currentLine.TabWord);
+                CreateEmptyLL(&listPlaylist.A[i]);
+                for (int j = 0; j < banyakIsiPlaylist; ++j)
+                {
+                    ADVFILE(false);
+                    getSong(song);
+                    InsertLastLL(&listPlaylist.A[i], song);
+                }
             }
         }
     }
