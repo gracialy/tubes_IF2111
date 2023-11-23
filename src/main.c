@@ -100,6 +100,7 @@ int main(){
         else if (isEqual(0, "SAVE")) save();
         else if (isEqual(0, "QUIT")) QuitAfterLoaded();
         else if (isEqual(0, "HELP")) helpAfterLoad();
+        else if (isEqual(0, "ENHANCE")) enhance();
         else printf("Command yang dimasukkan tidak valid\n");
     }
 }
