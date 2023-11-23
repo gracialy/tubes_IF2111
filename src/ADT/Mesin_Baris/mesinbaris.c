@@ -80,8 +80,19 @@ void CopyLine(boolean readDigit)
 
 int stringToInt(char* str){
     int res = 0;
-    for (int i = 0; str[i] != '\0'; ++i){
-        res = res * 10 + (str[i] - '0');
+    if (str[0] == '-')
+    {
+        for (int i = 1; str[i] != '\0'; ++i)
+        {
+            res = res * 10 - (str[i] - '0');
+        }  
+    }
+    else
+    {
+        for (int i = 0; str[i] != '\0'; ++i)
+        {
+            res = res * 10 + (str[i] - '0');
+        }
     }
     return res;
 }
