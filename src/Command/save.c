@@ -6,9 +6,9 @@ void save(){
     getWord(1, path);
     char a[] = "src/save/", b[NMax];
     konkatString(b, a, path);
-    printf("%d\n", isEOF());
+    printf("%s\n", b);
     f = fopen(b, "w");
-    printf("keload\n");
+    printf("dah fopen\n");
 
     char savetemp[NMax];
     int artistCount = 0;

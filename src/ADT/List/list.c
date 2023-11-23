@@ -46,6 +46,7 @@ void AddElementL(List* GE, char* playlistName){
     stringCopy(GE->A[GE->Neff].Name, playlistName);
     GE->A[GE->Neff].First = NilLL;
     GE->Neff ++;
+    printf("%d\n", GE->Capacity);
 }
 
 void DeleteAt(List *GE, IdxTypeL i){

@@ -14,7 +14,7 @@ int main(){
     char currentAlbum[NMax];
     CreateQueue(&songQueue);
     CreateEmptySt(&songHistory);
-    MakeList(&listPlaylist);
+    listPlaylist = MakeList();
     CreateMapEmpty(&listAlbum);
     printf("\n");
     // welcome();
@@ -44,6 +44,7 @@ int main(){
             printf(">> ");
         }
         else if (isEqual(0, "QUIT")) QuitBeforeLoaded();
+        else if (isEqual(0, "SAVE")) save();
         else
         {
             printf("Command yang dimasukkan tidak valid\n");

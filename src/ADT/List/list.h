@@ -7,7 +7,7 @@
 
 // Boolean
 
-#define InitialSize 128
+#define InitialSize 2
 
 typedef int IdxTypeL;
 typedef LinkedList ElTypeL;
