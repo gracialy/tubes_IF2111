@@ -128,28 +128,22 @@ char* GetLL(LinkedList L, int idx){
     }
     return P->info;
 }
-// idx pasti ada di L
+// idx pasti ada di LL
 
-void RemoveLL(LinkedList* L, int idx){
-    if (idx > NbElmt(*L)) return;
-
+void delLLidx(LinkedList* L, int idx){
     addressLL p = L->First;
-    if (idx == 1)
+    if (idx == 0)
     {
         L->First = p->next;
+        Dealokasi(&p);  
+        return;
     }
-    else
+    for (int i = 0; i < idx-1; ++i)
     {
-        int i = 1;
-        while (p != NilLL)
-        {
-            if (i == idx - 1)
-            {
-                p->next = p->next->next;
-                break;
-            }
-            p = p->next;
-            printf("loop\n");
-        }
+        p = p->next;
     }
+    addressLL q = p->next;
+    p->next = q->next;
+    Dealokasi(&q);
 }
+// idx pasti ada di LL

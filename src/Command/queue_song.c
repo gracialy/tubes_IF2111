@@ -46,11 +46,11 @@ void queueSwap(){
     getWord(2, xstr); getWord(3, ystr);
 
     // queue number is not completed
-    // if (CompareString(xstr, " ") || CompareString(ystr, " "))
-    // {
-    //     printf("Command yang dimasukkan tidak valid\n");
-    //     return;
-    // }
+    if (isEqual(2, "") || isEqual(3, ""))
+    {
+        printf("Command yang dimasukkan tidak valid\n");
+        return;
+    }
 
     int x = stringToInt(xstr), y = stringToInt(ystr);
     
@@ -84,11 +84,11 @@ void queueRemove(){
     char idxstr[NMax];
     getWord(2, idxstr);
     // queue number is not completed
-    // if (CompareString(idxstr, " "))
-    // {
-    //     printf("Command yang dimasukkan tidak valid\n");
-    //     return;
-    // }
+    if (isEqual(2, ""))
+    {
+        printf("Command yang dimasukkan tidak valid\n");
+        return;
+    }
 
     int idx = stringToInt(idxstr);
     if (idx > LengthQ(songQueue) || idx<=0)

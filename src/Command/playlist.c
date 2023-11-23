@@ -181,6 +181,10 @@ void InsertAlbumToPlaylist(){
 void playlistRemove(){
     char idstr[NMax], nstr[NMax];
     getWord(2, idstr); getWord(3, nstr);
+    if (isEqual(2, "") || isEqual(3, "")){
+        printf("Command yang dimasukkan tidak valid\n");
+        return;
+    }
     int id = stringToInt(idstr), n = stringToInt(nstr);
 
     if (id > listPlaylist.Neff || id<=0){
@@ -196,8 +200,7 @@ void playlistRemove(){
     char namalagu[NMax]; char namapenyanyi[NMax];
     stringCopy(namalagu, GetLL(listPlaylist.A[id - 1], n-1));
     getArtist(namalagu, namapenyanyi);
-    RemoveLL(&listPlaylist.A[id - 1], n);
-    //remove
+    delLLidx(&listPlaylist.A[id - 1], n-1);
     printf("Lagu \"%s\" oleh \"%s\" telah dihapus dari playlist \"%s\"\n", namalagu, namapenyanyi, namaplaylist);
     
 }
@@ -205,11 +208,11 @@ void playlistRemove(){
 void playlistSwap(){
     char idxstr[NMax], xstr[NMax], ystr[NMax];
     getWord(2, idxstr); getWord(3, xstr); getWord(4, ystr);
-    // if (CompareString(idxstr, " ") || CompareString(xstr, " ") || CompareString(ystr, " "))
-    // {
-    //     printf("Command yang dimasukkan tidak valid\n");
-    //     return;
-    // }
+    if (isEqual(2, "") || isEqual(3, "") || isEqual(4, ""))
+    {
+        printf("Command yang dimasukkan tidak valid\n");
+        return;
+    }
 
     int idx = stringToInt(idxstr), x = stringToInt(xstr), y = stringToInt(ystr);
     if (idx > listPlaylist.Neff || idx<=0){
@@ -219,15 +222,15 @@ void playlistSwap(){
     char namaplay[NMax]; 
     stringCopy(namaplay, listPlaylist.A[idx-1].Name);
     if ((x > NbElmt(listPlaylist.A[idx - 1]) || x<=0) && (y > NbElmt(listPlaylist.A[idx - 1]) || y<=0)){
-        printf("TIdak ada lagu dengan urutan %d dan %d di playlist \"%s\"\n", x, y, namaplay);
+        printf("Tidak ada lagu dengan urutan %d dan %d di playlist \"%s\"\n", x, y, namaplay);
         return;
     }
     else if ((x > NbElmt(listPlaylist.A[idx - 1]) || x<=0)){
-        printf("TIdak ada lagu dengan urutan %d di playlist \"%s\"\n", x, namaplay);
+        printf("Tidak ada lagu dengan urutan %d di playlist \"%s\"\n", x, namaplay);
         return;
     }
     else if ((y > NbElmt(listPlaylist.A[idx - 1]) || y<=0)){
-        printf("TIdak ada lagu dengan urutan %d di playlist \"%s\"\n", y, namaplay);
+        printf("Tidak ada lagu dengan urutan %d di playlist \"%s\"\n", y, namaplay);
         return;
     }
 

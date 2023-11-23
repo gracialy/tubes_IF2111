@@ -68,6 +68,6 @@ void swapLinkedList(LinkedList* L, int x, int y);
 
 char* GetLL(LinkedList L, int idx);
 
-void RemoveLL(LinkedList* L, int idx);
+void delLLidx(LinkedList* L, int idx);
 
 #endif
