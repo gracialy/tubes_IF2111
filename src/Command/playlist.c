@@ -261,3 +261,28 @@ void playlistDelete(){
     DeleteAt(&listPlaylist, idx);
     printf("Playlist ID %d dengan judul \"%s\" berhasil dihapus\n", idx+1, namaplay);
 }
+
+void setCurrentPlaylist(){
+    currentPlaylist[0] = '\0';
+    if (LengthQ(songQueue) > 1)
+    {
+        for (int i = 0; i < listPlaylist.Neff; ++i)
+        {
+            int idx = songQueue.idxHead;
+            boolean isMember = true;
+            while (isMember && idx != (songQueue.idxTail + 1) % (IDX_MAX + 1))
+            {
+                if (!isMemberLL(listPlaylist.A[i], songQueue.Tab[idx]))
+                {
+                    isMember = false;
+                }
+                idx = (idx + 1) % (IDX_MAX + 1);
+            }
+            if (isMember)
+            {
+                stringCopy(currentPlaylist, listPlaylist.A[i].Name);
+                break;
+            }
+        }
+    }
+}

@@ -7,6 +7,7 @@ void queueSong(){
     char artist[NMax];
     getArtist(song, artist);
     printf("Berhasil menambahkan lagu \"%s\" oleh \"%s\" ke queue\n", song, artist);
+    setCurrentPlaylist();
 }
 
 void queuePlaylist(){
@@ -37,6 +38,7 @@ void queuePlaylist(){
         p = p->next;
     }
     printf("Berhasil menambahkan playlist \"%s\" ke queue\n", listPlaylist.A[idx].Name);
+    setCurrentPlaylist();
 }
 
 void queueSwap(){
@@ -115,10 +117,12 @@ void queueRemove(){
         }
     }
     printf("Lagu \"%s\" oleh \"%s\" telah dihapus dari queue!\n", idxstr, artist);
+    setCurrentPlaylist();
 }
 
 void queueClear(){
     char temp[NMax];
     while (!IsEmptyQ(songQueue)) dequeue(&songQueue, temp);
     printf("Queue berhasil dikosongkan\n");
+    setCurrentPlaylist();
 }

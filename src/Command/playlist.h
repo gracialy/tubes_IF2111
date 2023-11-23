@@ -26,4 +26,6 @@ void playlistRemove();
 
 void playlistDelete();
 
+void setCurrentPlaylist();
+
 #endif

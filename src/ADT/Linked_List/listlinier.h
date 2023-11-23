@@ -54,10 +54,7 @@ void Dealokasi (addressLL *P);
 /* Melakukan dealokasi/pengembalian address P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-addressLL SearchLL (LinkedList L, infotypeLL* X);
-/* Mencari apakah ada elemen list dengan info(P)= X */
-/* Jika ada, mengirimkan address elemen tersebut. */
-/* Jika tidak ada, mengirimkan Nil */
+boolean isMemberLL(LinkedList L, char* songName);
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 

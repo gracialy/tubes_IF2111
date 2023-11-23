@@ -27,16 +27,15 @@ void Dealokasi(addressLL *P)
     free(*P);
 }
 
-addressLL SearchLL(LinkedList L, infotypeLL* X)
-{
-    addressLL P = First(L);
+boolean isMemberLL(LinkedList L, char* songName){
+    addressLL p = L.First;
     boolean isFound = false;
-    while (P != NilLL && !isFound)
+    while (p != NilLL && !isFound)
     {
-        if (CompareString(P->info, X)) isFound = true;
-        else P = Next(P);
+        if (CompareString(p->info, songName)) isFound = true;
+        p = p->next;
     }
-    return P;
+    return isFound;
 }
 
 void InsertLastLL(LinkedList* L, infotypeLL* X){
