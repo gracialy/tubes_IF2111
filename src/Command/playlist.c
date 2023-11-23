@@ -184,18 +184,19 @@ void playlistRemove(){
     int id = stringToInt(idstr), n = stringToInt(nstr);
 
     if (id > listPlaylist.Neff || id<=0){
-        printf("ID Playlist tidak valid\n");
+        printf("Tidak ada playlist dengan ID %d\n", id);
         return;
     }
     char namaplaylist[NMax]; 
     stringCopy(namaplaylist, listPlaylist.A[id-1].Name);
     if ((n > NbElmt(listPlaylist.A[id - 1]) || n<=0)){
-        printf("Urutan lagu tidak valid\n");
+        printf("Tidak ada lagu dengan urutan %d di playlist \"%s\"\n", n, namaplaylist);
         return;
     }
     char namalagu[NMax]; char namapenyanyi[NMax];
     stringCopy(namalagu, GetLL(listPlaylist.A[id - 1], n-1));
     getArtist(namalagu, namapenyanyi);
+    //remove
     printf("Lagu \"%s\" oleh \"%s\" telah dihapus dari playlist \"%s\"\n", namalagu, namapenyanyi, namaplaylist);
     
 }
@@ -211,13 +212,21 @@ void playlistSwap(){
 
     int idx = stringToInt(idxstr), x = stringToInt(xstr), y = stringToInt(ystr);
     if (idx > listPlaylist.Neff || idx<=0){
-        printf("ID Playlist tidak valid\n");
+        printf("Tidak ada playlist dengan playlist ID %d\n", idx);
         return;
     }
     char namaplay[NMax]; 
     stringCopy(namaplay, listPlaylist.A[idx-1].Name);
     if ((x > NbElmt(listPlaylist.A[idx - 1]) || x<=0) && (y > NbElmt(listPlaylist.A[idx - 1]) || y<=0)){
-        printf("Urutan lagu tidak valid\n");
+        printf("TIdak ada lagu dengan urutan %d dan %d di playlist \"%s\"\n", x, y, namaplay);
+        return;
+    }
+    else if ((x > NbElmt(listPlaylist.A[idx - 1]) || x<=0)){
+        printf("TIdak ada lagu dengan urutan %d di playlist \"%s\"\n", x, namaplay);
+        return;
+    }
+    else if ((y > NbElmt(listPlaylist.A[idx - 1]) || y<=0)){
+        printf("TIdak ada lagu dengan urutan %d di playlist \"%s\"\n", y, namaplay);
         return;
     }
 

@@ -25,6 +25,11 @@ void queuePlaylist(){
         printf("ID yang dimasukkan tidak ada\n");
         return;
     }
+    if (NbElmt(listPlaylist.A[idx])==0)
+    {
+        printf("Playlist yang dipilih kosong\n");
+        return;
+    }
     addressLL p = listPlaylist.A[idx].First;
     for (int i = 0; i < NbElmt(listPlaylist.A[idx]); ++i)
     {
@@ -48,9 +53,19 @@ void queueSwap(){
     int x = stringToInt(xstr), y = stringToInt(ystr);
     
     // queue number is not valid
-    if ((x > LengthQ(songQueue) || x<=0) || (y > LengthQ(songQueue) || y<=0))
+    if ((x > LengthQ(songQueue) || x<=0) && (y > LengthQ(songQueue) || y<=0))
     {
-        printf("Urutan lagu tidak valid\n", x, y);
+        printf("Lagu dengan urutan ke %d dan %d tidak terdapat dalam queue\n", x, y);
+        return;
+    }
+    else if ((x > LengthQ(songQueue) || x<=0))
+    {
+        printf("Lagu dengan urutan ke %d tidak terdapat dalam queue\n", x);
+        return;
+    }
+    else if ((y > LengthQ(songQueue) || y<=0))
+    {
+        printf("Lagu dengan urutan ke %d tidak terdapat dalam queue\n", y);
         return;
     }
 
@@ -76,7 +91,7 @@ void queueRemove(){
     int idx = stringToInt(idxstr);
     if (idx > LengthQ(songQueue) || idx<=0)
     {
-        printf("Urutan lagu tidak valid\n");
+        printf("Lagu dengan urutan ke %d tidak terdapat dalam queue\n", idx);
         return;
     }
 
