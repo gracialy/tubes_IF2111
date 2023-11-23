@@ -1,9 +1,12 @@
 #include "play.h"
 
 void playSong (){
-    SelectSong(currentSong);
-    stringCopy(currentPlaylist, "\0"); // tidak ada playlist yang sedang diputar
-    CreateQueue(&songQueue); // tidak ada lagu dalam queue
+    if (SelectSong(currentSong)==0){
+        stringCopy(currentPlaylist, "\0"); // tidak ada playlist yang sedang diputar
+        CreateQueue(&songQueue); // tidak ada lagu dalam queue
+        char artist[NMax]; getArtist(currentSong, artist);
+        printf("Memutar lagu \"%s\" oleh \"%s\"\n", currentSong, artist);
+    }
 }
 
 void playPlaylist(){
