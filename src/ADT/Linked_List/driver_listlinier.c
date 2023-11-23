@@ -12,8 +12,8 @@ int main() {
     char elem3[] = "C";
     char elem4[] = "D";
 
-    InsVFirst(&myList, elem1);
-    InsVLast(&myList, elem2);
+    InsertLastLL(&myList, elem1);
+    InsertLastLL(&myList, elem2);
     InsertLastLL(&myList, elem3);
     InsertLastLL(&myList, elem4);
 
@@ -32,18 +32,17 @@ int main() {
 
     // Mencari sebuah elemen di List
     char searchElem[] = "B";
-    addressLL foundElem = SearchLL(myList, searchElem);
+    boolean foundElem = isMemberLL(myList, searchElem);
 
-    if (foundElem != NilLL) {
+    if (foundElem) {
         printf("Elemen \"%s\" ada di dalam list.\n", searchElem);
     } else {
         printf("Element \"%s\" tidak ada di dalam list list.\n", searchElem);
     }
 
     // Hapus elemen pertama
-    char deletedElem1[NMax];
-    DelVFirst(&myList, deletedElem1);
-    printf("Elemen pertama yang dihapus: %s\n", deletedElem1);
+    RemoveLL(&myList, 1);
+    printf("Elemen pertama berhasil dihapus\n");
 
     // Display setelah dihapus
     printf("Linked List: \n");
@@ -52,8 +51,8 @@ int main() {
 
     // Hapus Elemen Terakhir
     char deletedElem2[NMax];
-    DelVLast(&myList, deletedElem2);
-    printf("Elemen terakhir yang dihapus: %s\n", deletedElem2);
+    RemoveLL(&myList, NbElmt(myList));
+    printf("Elemen terakhir berhasil dihapus\n");
 
     // Display setelah dihapus
     printf("Linked List: \n");

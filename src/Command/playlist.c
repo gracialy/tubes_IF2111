@@ -196,6 +196,7 @@ void playlistRemove(){
     char namalagu[NMax]; char namapenyanyi[NMax];
     stringCopy(namalagu, GetLL(listPlaylist.A[id - 1], n-1));
     getArtist(namalagu, namapenyanyi);
+    RemoveLL(&listPlaylist.A[id - 1], n);
     //remove
     printf("Lagu \"%s\" oleh \"%s\" telah dihapus dari playlist \"%s\"\n", namalagu, namapenyanyi, namaplaylist);
     
