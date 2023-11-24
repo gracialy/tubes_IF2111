@@ -6,7 +6,7 @@ void helpBeforeLoad()
     printf("==========================================================================++++++++++++++++++++++++\n");
     printf("  +:*+.+:*+.+:*+.+:*+.+:*+.  H E L P  M E N U   W A Y A N G W A V E.+*:+.+*:+.+*:+.+*:+.+*:+. \n\n");
     printf("1.  START               : Masuk ke sesi baru\n");
-    printf("2.  LOAD                : Mulai sesi Berdasarkan file Konfigurasi\n");
+    printf("2.  LOAD <namafile.txt> : Mulai sesi Berdasarkan file Konfigurasi\n");
     printf("==================================================================================================\n");
 }
 /* I.S. sembarang */
@@ -21,7 +21,7 @@ void helpAfterLoad(){
     printf("4.  SONG                    : Untuk Navigasi Lagu\n");
     printf("5.  PLAYLIST                : Basic Command untuk Playlist\n");
     printf("6.  STATUS                  : Menampilkan lagu yang sedang dimainkan & Queue song yang ada ,dari playlist mana lagu itu diputar\n");
-    printf("7.  SAVE<filename.txt>      : Menyimpan state aplikasi terbaru\n");
+    printf("7.  SAVE <namafile.txt>     : Menyimpan state aplikasi terbaru\n");
     printf("8.  SHOWPLAYLIST            : Menampilkan Playlist yang ada\n");
     printf("9.  QUIT                    : Keluar dari aplikasi WayangWave\n");
     printf("==================================================================================================\n");
