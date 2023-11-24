@@ -4,6 +4,11 @@ void save(){
     char path[NMax];
     FILE* f;
     getWord(1, path);
+    if (!istxt(path))
+    {
+        printf("File harus berekstensi .txt\n");
+        return;
+    }
     char a[] = "src/save/", b[NMax];
     konkatString(b, a, path);
     f = fopen(b, "w");
@@ -95,5 +100,13 @@ void save(){
 
 
     fclose(f);
+    printf("Save file berhasil disimpan\n");
 }
 
+boolean istxt(char* path)
+{
+    int i = 0;
+    while (path[i] != '\0') i++;
+    if (path[i-1] != 't' || path[i-2] != 'x' || path[i-3] != 't' || path[i-4] != '.') return false;
+    return true;
+}

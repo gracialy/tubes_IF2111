@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "help.h": "c",
+        "save.h": "c",
+        "song.h": "c",
+        "queue_song.h": "c",
+        "stack.h": "c",
+        "showlist.h": "c",
+        "mesinkata.h": "c",
+        "stdio.h": "c",
+        "main.h": "c",
+        "circular_queue.h": "c"
+    }
+}

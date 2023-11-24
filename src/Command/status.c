@@ -1,6 +1,8 @@
 #include "status.h"
 
 void status(){
+    printf("Logged in as %s\n", username);
+
     // current playlist
     if (currentPlaylist[0] != '\0'){
         printf("Current Playlist: %s\n", currentPlaylist);

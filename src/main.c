@@ -21,7 +21,7 @@ int main(){
     CreateMapEmpty(&listAlbum);
     CreateLUser();
     printf("\n");
-    // welcome();
+    welcome();
     printf("\n");
     printf(">> ");
     STARTWORD();
@@ -29,7 +29,7 @@ int main(){
 
     boolean loaded = false;
     boolean loggedIn = false;
-    while (!loaded && !loggedIn)
+    while (!loaded)
     {
         ADVWORD();
         getWord(0, command);
@@ -50,11 +50,6 @@ int main(){
             printf(">> ");
         }
         else if (isEqual(0, "QUIT")) QuitBeforeLoaded();
-        else if (isEqual(0, "LOGIN"))
-        {
-            login();
-            loggedIn = true;
-        }
         else
         {
             printf("Command yang dimasukkan tidak valid\n");
@@ -72,7 +67,7 @@ int main(){
                 login();
                 loggedIn = true;
             }
-            else if (isEqual(0, "HELP")); //
+            else if (isEqual(0, "HELP")) helpBeforeLog();
             else if (isEqual(0, "QUIT")) QuitAfterLoaded();
             else if (isEqual(0, "SAVE")) save();
             else printf("Command yang dimasukkan tidak valid\n");
