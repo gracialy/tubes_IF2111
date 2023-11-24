@@ -18,9 +18,10 @@ WayangWave merupakan sebuah aplikasi yang bisa mensimulasikan service pemutaran 
 4. Muhammad Adli Arindra        (18222089)
 
 ## Cara Kompilasi Program
+Pengguna dapat langsung mengeksekusi main di terminal setelah memastikan current directory ada pada folder ini
+atau
 - Pada terminal, pastikan current directory ada pada folder ini
 - Untuk Windows:ubah compiler.txt menjadi compiler.bat
 - Untuk Linux, ubah compiler.txt menjadi compiler.sh
 - Eksekusi file compiler pada terminal dengan mengetikkan nama file
 - Eksekusi main pada terminal dengan mengetikkan main
-atau, pengguna dapat langsung mengeksekusi main di terminal setelah memastikan current directory ada pada folder ini
