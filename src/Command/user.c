@@ -42,7 +42,6 @@ void logout(){
   stringCopy(currentSong, "");
   CreateQueue(&songQueue);
   CreateEmptySt(&songHistory);
-  printf("masuk\n");
   DeallocateArrayDIN(&listPlaylist);
   listPlaylist = MakeList(); // dealloc?
   printf("Berhasil keluar. Sampai jumpa lagi, %s!\n", username);
