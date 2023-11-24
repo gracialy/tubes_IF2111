@@ -21,7 +21,7 @@ int main(){
     CreateMapEmpty(&listAlbum);
     CreateLUser();
     printf("\n");
-    // welcome();
+    welcome();
     printf("\n");
     printf(">> ");
     STARTWORD();
