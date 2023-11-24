@@ -3,6 +3,8 @@
 char currentSong[NMax];
 char currentPlaylist[NMax];
 
+char username[NMax];
+
 char listArtis[maxA][maxAN];
 Map listAlbum;
 List listPlaylist;
@@ -17,11 +19,13 @@ int main(){
     CreateEmptySt(&songHistory);
     listPlaylist = MakeList();
     CreateMapEmpty(&listAlbum);
+    CreateLUser();
     printf("\n");
     // welcome();
     printf("\n");
     printf(">> ");
     STARTWORD();
+
 
     boolean loaded = false;
     boolean loggedIn = false;
@@ -57,76 +61,76 @@ int main(){
             printf(">> ");
         }
     }
-while (loaded && !loggedIn)
+    while (loaded)
     {
         printf(">> ");
         ADVWORD();
-        if (isEqual(0, "LOGIN"))
+        if (!loggedIn)
         {
-            login();
-            loggedIn = true;
-        }
-        else if (isEqual(0, "HELP")); //
-        else if (isEqual(0, "QUIT")) QuitAfterLoaded();
-        else if (isEqual(0, "SAVE")) save();
-        else printf("Command yang dimasukkan tidak valid\n");
-    }
-    while (loggedIn)
-    {
-        printf(">> ");
-        ADVWORD();
-        if (isEqual(0, "LIST"))
-        {
-            if (isEqual(1, "DEFAULT")) ListDefault();
-            else if (isEqual(1, "PLAYLIST")) showPlaylist();
-            else printf("Command yang dimasukkan tidak valid\n");
-        }
-        else if (isEqual(0, "PLAY"))
-        {
-            if (isEqual(1, "SONG")) playSong();
-            else if (isEqual(1, "PLAYLIST")) playPlaylist();
-            else printf("Command yang dimasukkan tidak valid\n");
-        }
-        else if (isEqual(0, "QUEUE"))
-        {
-            if (isEqual(1, "SONG")) queueSong();
-            else if (isEqual(1, "PLAYLIST")) queuePlaylist();
-            else if (isEqual(1, "SWAP")) queueSwap();
-            else if (isEqual(1, "REMOVE")) queueRemove();
-            else if (isEqual(1, "CLEAR")) queueClear();
-            else printf("Command yang dimasukkan tidak valid\n");
-        }
-        else if (isEqual(0, "SONG"))
-        {
-            if (isEqual(1, "NEXT")) songNext();
-            else if (isEqual(1, "PREVIOUS")) songPrevious();
-            else printf("Command yang dimasukkan tidak valid\n");
-        }
-        else if (isEqual(0, "PLAYLIST"))
-        {
-            if (isEqual(1, "CREATE")) CreatePlaylist();
-            else if (isEqual(1, "ADD"))
+            if (isEqual(0, "LOGIN"))
             {
-                if (isEqual(2, "SONG")) InsertPlaylist();
-                else if (isEqual(2, "ALBUM")) InsertAlbumToPlaylist();
+                login();
+                loggedIn = true;
+            }
+            else if (isEqual(0, "HELP")); //
+            else if (isEqual(0, "QUIT")) QuitAfterLoaded();
+            else if (isEqual(0, "SAVE")) save();
+            else printf("Command yang dimasukkan tidak valid\n");
+        }
+        else
+        {
+            if (isEqual(0, "LIST"))
+            {
+                if (isEqual(1, "DEFAULT")) ListDefault();
+                else if (isEqual(1, "PLAYLIST")) showPlaylist();
                 else printf("Command yang dimasukkan tidak valid\n");
             }
-            else if (isEqual(1, "REMOVE")) playlistRemove();
-            else if (isEqual(1, "DELETE")) playlistDelete();
-            else if (isEqual(1, "SWAP")) playlistSwap();
+            else if (isEqual(0, "PLAY"))
+            {
+                if (isEqual(1, "SONG")) playSong();
+                else if (isEqual(1, "PLAYLIST")) playPlaylist();
+                else printf("Command yang dimasukkan tidak valid\n");
+            }
+            else if (isEqual(0, "QUEUE"))
+            {
+                if (isEqual(1, "SONG")) queueSong();
+                else if (isEqual(1, "PLAYLIST")) queuePlaylist();
+                else if (isEqual(1, "SWAP")) queueSwap();
+                else if (isEqual(1, "REMOVE")) queueRemove();
+                else if (isEqual(1, "CLEAR")) queueClear();
+                else printf("Command yang dimasukkan tidak valid\n");
+            }
+            else if (isEqual(0, "SONG"))
+            {
+                if (isEqual(1, "NEXT")) songNext();
+                else if (isEqual(1, "PREVIOUS")) songPrevious();
+                else printf("Command yang dimasukkan tidak valid\n");
+            }
+            else if (isEqual(0, "PLAYLIST"))
+            {
+                if (isEqual(1, "CREATE")) CreatePlaylist();
+                else if (isEqual(1, "ADD"))
+                {
+                    if (isEqual(2, "SONG")) InsertPlaylist();
+                    else if (isEqual(2, "ALBUM")) InsertAlbumToPlaylist();
+                    else printf("Command yang dimasukkan tidak valid\n");
+                }
+                else if (isEqual(1, "REMOVE")) playlistRemove();
+                else if (isEqual(1, "DELETE")) playlistDelete();
+                else if (isEqual(1, "SWAP")) playlistSwap();
+                else printf("Command yang dimasukkan tidak valid\n");
+            }
+            else if (isEqual(0, "STATUS")) status();
+            else if (isEqual(0, "SAVE")) save();
+            else if (isEqual(0, "QUIT")) QuitAfterLoaded();
+            else if (isEqual(0, "HELP")) helpAfterLoad();
+            else if (isEqual(0, "ENHANCE")) enhance();
+            else if (isEqual(0, "LOGOUT"))
+            {
+                logout();
+                loggedIn = false;
+            }
             else printf("Command yang dimasukkan tidak valid\n");
         }
-        else if (isEqual(0, "STATUS")) status();
-        else if (isEqual(0, "SAVE")) save();
-        else if (isEqual(0, "QUIT")) QuitAfterLoaded();
-        else if (isEqual(0, "HELP")) helpAfterLoad();
-        else if (isEqual(0, "ENHANCE")) enhance();
-        else if (isEqual(0, "LOGOUT"))
-        {
-            logout();
-            loggedIn = false;
-        }
-        else printf("Command yang dimasukkan tidak valid\n");
     }
 }
-

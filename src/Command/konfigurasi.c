@@ -1,8 +1,10 @@
 #include "konfigurasi.h"
 
 int banyakArtis;
+int banyakUser;
 
 void konfigurasi(char* path){
+    char song[NMax];
     if (!isPathValid(path))
     {
         printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
@@ -34,28 +36,23 @@ void konfigurasi(char* path){
             listAlbum.Count ++;
         } 
     }
-    ADVFILE(true);
-    int banyakUser = currentInt;
-    for (int i = 0; i < banyakUser; ++i) //ngebaca nama user
-    {
-        ADVFILE(false);
-        stringCopy(listUser[i].username, currentLine.TabWord);
-    }
     if (!isEOF())
     {
-        for (int i = 0; i < banyakUser; ++i) //ngebaca data user
-        {    
-            char song[NMax];
+        ADVFILE(true);
+        banyakUser = currentInt;
+        for (int u = 0; u < banyakUser; ++u)
+        {
             ADVFILE(false);
-            getSong(song);
-            stringCopy(currentSong, song);
+            stringCopy(listUser.username[u], currentLine.TabWord);
+            ADVFILE(false);
+            getSong(listUser.nowplaying[u]);
             ADVFILE(true);
             int banyakQueue = currentInt;
             for (int i = 0; i < banyakQueue; ++i)
             {
                 ADVFILE(false);
                 getSong(song);
-                enqueue(&songQueue, song);
+                enqueue(&listUser.queue[u], song);
             }
             ADVFILE(true);
             int banyakStack = currentInt;
@@ -63,7 +60,7 @@ void konfigurasi(char* path){
             {
                 ADVFILE(false);
                 getSong(song);
-                Push(&songHistory, song);
+                Push(&listUser.history[u], song);
             }
             ADVFILE(true);
             int banyakPlaylist = currentInt;
@@ -71,17 +68,18 @@ void konfigurasi(char* path){
             {
                 ADVFILE(true);
                 int banyakIsiPlaylist = currentInt;
-                AddElementL(&listPlaylist, currentLine.TabWord);
-                CreateEmptyLL(&listPlaylist.A[i]);
+                AddElementL(&listUser.playlist[u], currentLine.TabWord);
+                CreateEmptyLL(&listUser.playlist[u].A[i]);
                 for (int j = 0; j < banyakIsiPlaylist; ++j)
                 {
                     ADVFILE(false);
                     getSong(song);
-                    InsertLastLL(&listPlaylist.A[i], song);
+                    InsertLastLL(&listUser.playlist[u].A[i], song);
                 }
             }
         }
     }
+    
     while (!isEOF()) ADVFILE(false);
     printf("File konfigurasi berhasil dibaca. WayangWave berhasil dijalankan!\n");
 }

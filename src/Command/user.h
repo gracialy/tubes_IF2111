@@ -18,12 +18,15 @@ typedef struct {
   List playlist[maxuser];
 } User;
 
+extern User listUser;
+extern char username[NMax];
+
 void CreateLUser();
 
 void login();
 
 void logout();
 
-int UserIdx();
+int UserIdx(char* temp);
 
 #endif

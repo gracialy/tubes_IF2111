@@ -6,9 +6,7 @@ void save(){
     getWord(1, path);
     char a[] = "src/save/", b[NMax];
     konkatString(b, a, path);
-    printf("%s\n", b);
     f = fopen(b, "w");
-    printf("dah fopen\n");
 
     char savetemp[NMax];
     int artistCount = 0;
@@ -36,57 +34,66 @@ void save(){
         }
     }
     char artistTemp[NMax], albumTemp[NMax], songTemp[NMax];
-    getArtist(currentSong, artistTemp); getAlbum(currentSong, albumTemp);
-    fprintf(f, "%s;%s;%s\n", artistTemp, albumTemp, currentSong);
-    // QUEUE
-    if (songQueue.idxHead == IDX_UNDEF) fprintf(f, "0\n");
-    else 
+    fprintf(f, "%d\n", banyakUser);
+    for (int u = 0; u < banyakUser; ++u)
     {
-        if (songQueue.idxHead > songQueue.idxTail) fprintf(f, "%d", 99 - songQueue.idxHead + songQueue.idxTail + 2);
-        else fprintf(f, "%d\n", songQueue.idxTail - songQueue.idxHead + 1);
-        int idx = songQueue.idxHead;
-        while (idx != (songQueue.idxTail + 1) % 100)
-        {
-            stringCopy(songTemp, songQueue.Tab[idx]);
-            getArtist(songTemp, artistTemp); getAlbum(songTemp, albumTemp);
-            fprintf(f, "%s;%s;%s\n", artistTemp, albumTemp, songTemp);
-            idx++;
-        }
-    }
-    
-    // STACK
-    if (IsEmptySt(songHistory)) fprintf(f, "0\n");
-    else
-    {
-        for (int i = 0; i <= songHistory.TOP; ++i)
-        {
-            stringCopy(songTemp, songHistory.T[i]);
-            getArtist(songTemp, artistTemp); getAlbum(songTemp, albumTemp);
-            fprintf(f, "%s;%s;%s\n", artistTemp, albumTemp, songTemp);
-        }
-    }
+        fprintf(f, "%s\n", listUser.username[u]);
+        getArtist(listUser.nowplaying[u], artistTemp); getAlbum(listUser.nowplaying[u], albumTemp);
+        fprintf(f, "%s;%s;%s\n", artistTemp, albumTemp, listUser.nowplaying[u]);
 
-    // PLAYLIST
-
-    fprintf(f, "%d\n", listPlaylist.Neff);
-    for (int i = 0; i < listPlaylist.Neff; ++i)
-    {
-        fprintf(f, "%d %s\n", NbElmt(listPlaylist.A[i]), listPlaylist.A[i].Name);
-        if (listPlaylist.A[i].First != NilLL)
+        // QUEUE
+        if (listUser.queue[u].idxHead == IDX_UNDEF) fprintf(f, "0\n");
+        else 
         {
-            addressLL p = listPlaylist.A[i].First;
-            while (p->next != NilLL)
+            if (listUser.queue[u].idxHead > listUser.queue[u].idxTail) fprintf(f, "%d", 99 - listUser.queue[u].idxHead + listUser.queue[u].idxTail + 2);
+            else fprintf(f, "%d\n", listUser.queue[u].idxTail - listUser.queue[u].idxHead + 1);
+            int idx = listUser.queue[u].idxHead;
+            while (idx != (listUser.queue[u].idxTail + 1) % 100)
             {
+                stringCopy(songTemp, listUser.queue[u].Tab[idx]);
+                getArtist(songTemp, artistTemp); getAlbum(songTemp, albumTemp);
+                fprintf(f, "%s;%s;%s\n", artistTemp, albumTemp, songTemp);
+                idx++;
+            }
+        }
+
+        // STACK
+        if (IsEmptySt(listUser.history[u])) fprintf(f, "0\n");
+        else
+        {
+            fprintf(f, "%d\n", listUser.history[u].TOP);
+            for (int i = 0; i <= listUser.history[u].TOP; ++i)
+            {
+                stringCopy(songTemp, listUser.history[u].T[i]);
+                getArtist(songTemp, artistTemp); getAlbum(songTemp, albumTemp);
+                fprintf(f, "%s;%s;%s\n", artistTemp, albumTemp, songTemp);
+            }
+        }
+
+        // PLAYLIST
+
+        fprintf(f, "%d\n", listUser.playlist[u].Neff);
+        for (int i = 0; i < listUser.playlist[u].Neff; ++i)
+        {
+            fprintf(f, "%d %s\n", NbElmt(listUser.playlist[u].A[i]), listUser.playlist[u].A[i].Name);
+            if (listUser.playlist[u].A[i].First != NilLL)
+            {
+                addressLL p = listUser.playlist[u].A[i].First;
+                while (p->next != NilLL)
+                {
+                    stringCopy(songTemp, p->info);
+                    getArtist(songTemp, artistTemp); getAlbum(songTemp, albumTemp);
+                    fprintf(f, "%s;%s;%s\n", artistTemp, albumTemp, songTemp);
+                    p = p->next;
+                }
                 stringCopy(songTemp, p->info);
                 getArtist(songTemp, artistTemp); getAlbum(songTemp, albumTemp);
                 fprintf(f, "%s;%s;%s\n", artistTemp, albumTemp, songTemp);
-                p = p->next;
             }
-            stringCopy(songTemp, p->info);
-            getArtist(songTemp, artistTemp); getAlbum(songTemp, albumTemp);
-            fprintf(f, "%s;%s;%s\n", artistTemp, albumTemp, songTemp);
         }
     }
+
+
     fclose(f);
 }
 

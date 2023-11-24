@@ -16,6 +16,7 @@
 #include "Command/save.h"
 #include "Command/quit.h"
 #include "Command/user.h"
+#include "Command/enhance.h"
 
 #ifndef HEADER_H
 #define HEADER_H
@@ -30,6 +31,5 @@ extern Map listAlbum;
 extern List listPlaylist;
 extern Queue songQueue;
 extern Stack songHistory;
-extern User listUser;
 
 #endif

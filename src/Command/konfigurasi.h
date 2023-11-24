@@ -11,6 +11,7 @@
 #include"../main.h"
 
 extern int banyakArtis;
+extern int banyakUser;
 
 void konfigurasi(char* path);
 

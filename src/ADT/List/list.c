@@ -10,7 +10,6 @@ List MakeList(){
 }
 
 void DeallocateArrayDIN(List *GE){
-    free(GE->A);
     GE->A = NULL;
     GE -> Capacity = 0;
     GE -> Neff = 0;

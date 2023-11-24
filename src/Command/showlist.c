@@ -142,6 +142,11 @@ void showPlaylist(){
 }
 
 void getArtist(char *song, char* artist){
+    if (song[0] == '\0')
+    {
+        artist[0] = '\0';
+        return;
+    }
     for (int i = 0; i < listAlbum.Count; ++i)
     {
         for (int j = 0; j < getSet(listAlbum, i).Count; ++j)
@@ -156,6 +161,11 @@ void getArtist(char *song, char* artist){
 }
 
 void getAlbum(char *song, char* album){
+    if (song[0] == '\0')
+    {
+        album[0] = '\0';
+        return;
+    }
     for (int i = 0; i < listAlbum.Count; ++i)
     {
         for (int j = 0; j < getSet(listAlbum, i).Count; ++j)
